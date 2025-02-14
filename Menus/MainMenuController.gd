@@ -1,7 +1,7 @@
 extends Control
 
-var MainMenuCameraPosition
-var OptionsMenuCameraPosition
+var MainMenuCameraPosition : int = 0
+var OptionsMenuCameraPosition : int = 1920
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +18,7 @@ func _on_start_button_pressed() -> void:
 
 #option button Actions
 func _on_options_button_pressed() -> void:
-	$CameraHolder.position.x += 1920
+	$CameraHolder.position.x = OptionsMenuCameraPosition
 
 #Quit button Actions
 func _on_quit_button_pressed() -> void:
@@ -26,4 +26,4 @@ func _on_quit_button_pressed() -> void:
 	
 #BackButton
 func _on_back_button_pressed() -> void:
-	$CameraHolder.position.x -= 1920
+	$CameraHolder.position.x = MainMenuCameraPosition
