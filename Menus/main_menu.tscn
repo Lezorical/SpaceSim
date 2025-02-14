@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b55w3fi6ujxe3"]
+[gd_scene load_steps=5 format=3 uid="uid://b55w3fi6ujxe3"]
 
 [ext_resource type="Script" path="res://Menus/MainMenuController.gd" id="1_jigko"]
+[ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="2_n2p3p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3pit"]
+font_size = 130
+font_color = Color(0.403922, 0.0588235, 0.25098, 0.627451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lfya7"]
+font_size = 130
+font_color = Color(0.403922, 0.0588235, 0.25098, 0.627451)
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -10,6 +19,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jigko")
+
+[node name="Background Image" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 1080.0
+texture = ExtResource("2_n2p3p")
+expand_mode = 1
 
 [node name="CameraHolder" type="Node2D" parent="."]
 
@@ -29,13 +45,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -219.0
-offset_top = 98.0
-offset_right = -145.0
-offset_bottom = 121.0
+offset_left = -292.5
+offset_top = 57.0
+offset_right = 292.5
+offset_bottom = 231.0
 grow_horizontal = 2
-scale = Vector2(5.41858, 5.41858)
 text = "SpaceSim"
+label_settings = SubResource("LabelSettings_i3pit")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -53,16 +69,19 @@ scale = Vector2(2, 2)
 
 [node name="StartButton" type="Button" parent="Main Menu/MainMenuButtons"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
 text = "Start"
 flat = true
 
 [node name="OptionsButton" type="Button" parent="Main Menu/MainMenuButtons"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
 text = "Options"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Main Menu/MainMenuButtons"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
 text = "Quit"
 flat = true
 
@@ -82,8 +101,8 @@ offset_top = 110.0
 offset_right = -77.0
 offset_bottom = 133.0
 grow_horizontal = 2
-scale = Vector2(5.41858, 5.41858)
 text = "Options"
+label_settings = SubResource("LabelSettings_lfya7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -101,6 +120,7 @@ scale = Vector2(2.79913, 1.86847)
 
 [node name="BackButton" type="Button" parent="Options Menu/BackButton"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
 text = "Back"
 flat = true
 
