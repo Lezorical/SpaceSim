@@ -14,5 +14,6 @@ Things that should in on first release;
   5. a character species
   6. space like enviorment
   7. measurement system, most likely in Metric
+aa
 
 
