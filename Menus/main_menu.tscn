@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Menus/MainMenuController.gd" id="1_jigko"]
 
-[node name="Main Menu" type="Control"]
+[node name="Menus" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,49 +11,101 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jigko")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 45.0
-offset_top = -276.0
-offset_right = 115.0
-offset_bottom = -175.0
-grow_vertical = 0
-scale = Vector2(2, 2)
+[node name="CameraHolder" type="Node2D" parent="."]
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Start"
-flat = true
+[node name="MainMenuCamera" type="Camera2D" parent="CameraHolder"]
+position = Vector2(960, 540)
+scale = Vector2(1e-05, 1e-05)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Options"
-flat = true
+[node name="Main Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Quit"
-flat = true
-
-[node name="GameName" type="Label" parent="."]
+[node name="GameName" type="Label" parent="Main Menu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -159.0
-offset_top = 31.0
-offset_right = -85.0
-offset_bottom = 54.0
+offset_left = -219.0
+offset_top = 98.0
+offset_right = -145.0
+offset_bottom = 121.0
 grow_horizontal = 2
 scale = Vector2(5.41858, 5.41858)
 text = "SpaceSim"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="VBoxContainer/QuitButton" method="_on_pressed"]
+[node name="MainMenuButtons" type="VBoxContainer" parent="Main Menu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 54.0
+offset_top = -273.0
+offset_right = 124.0
+offset_bottom = -172.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="StartButton" type="Button" parent="Main Menu/MainMenuButtons"]
+layout_mode = 2
+text = "Start"
+flat = true
+
+[node name="OptionsButton" type="Button" parent="Main Menu/MainMenuButtons"]
+layout_mode = 2
+text = "Options"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Main Menu/MainMenuButtons"]
+layout_mode = 2
+text = "Quit"
+flat = true
+
+[node name="Options Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1920.0
+offset_right = 3840.0
+offset_bottom = 1080.0
+
+[node name="OptionsName" type="Label" parent="Options Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 110.0
+offset_right = -77.0
+offset_bottom = 133.0
+grow_horizontal = 2
+scale = Vector2(5.41858, 5.41858)
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="VBoxContainer" parent="Options Menu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = -111.0
+offset_right = 127.0
+offset_bottom = -71.0001
+grow_vertical = 0
+scale = Vector2(2.79913, 1.86847)
+
+[node name="BackButton" type="Button" parent="Options Menu/BackButton"]
+layout_mode = 2
+text = "Back"
+flat = true
+
+[connection signal="pressed" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Main Menu/MainMenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="Main Menu/MainMenuButtons/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_pressed"]
