@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxlugnok4btky"
+path="res://.godot/imported/Page Transition 1.mp3-e4db3a0408326b06e8d1b0de529add76.mp3str"
+
+[deps]
+
+source_file="res://File Drop/Page Transition 1.mp3"
+dest_files=["res://.godot/imported/Page Transition 1.mp3-e4db3a0408326b06e8d1b0de529add76.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

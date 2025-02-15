@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://y87iif2mxnqj"
+path="res://.godot/imported/Menu Swoosh 2.mp3-c6e3192b4d24380e28fce7a7bd4a60ca.mp3str"
+
+[deps]
+
+source_file="res://File Drop/Menu Swoosh 2.mp3"
+dest_files=["res://.godot/imported/Menu Swoosh 2.mp3-c6e3192b4d24380e28fce7a7bd4a60ca.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

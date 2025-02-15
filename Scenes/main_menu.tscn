@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b55w3fi6ujxe3"]
+[gd_scene load_steps=16 format=3 uid="uid://b55w3fi6ujxe3"]
 
 [ext_resource type="Script" path="res://Menus/Scripts/MainMenuController.gd" id="1_k3e35"]
 [ext_resource type="Script" path="res://Menus/Scripts/main_menu_sound_manager.gd" id="2_n0sxy"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Menus/Menu Sounds/hoverSound.mp3" id="6_1kj7d"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Menus/Menu Sounds/clickSound1.mp3" id="7_g6q07"]
 [ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="8_0kq35"]
+[ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://soundIcon.png" id="10_mxwkk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uj1lj"]
 font_size = 21
@@ -21,6 +22,12 @@ font_color = Color(0.403922, 0.0588235, 0.25098, 0.627451)
 font_size = 130
 font_color = Color(0.403922, 0.0588235, 0.25098, 0.627451)
 
+[sub_resource type="LabelSettings" id="LabelSettings_qx8qx"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_moy1g"]
+font_size = 29
+
 [node name="Menus" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -32,30 +39,39 @@ script = ExtResource("1_k3e35")
 
 [node name="Sound Manager" type="Node" parent="."]
 script = ExtResource("2_n0sxy")
+master_bus = "Master"
+main_menu_bus = "MainMenuMusic"
+sfx_bus = "sfx"
 
 [node name="backgroundMusic1" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("3_ki7hp")
 volume_db = -15.0
+bus = &"MainMenuMusic"
 
 [node name="backgroundMusic2" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("4_m2lyy")
 volume_db = -15.0
+bus = &"MainMenuMusic"
 
 [node name="backgroundMusic3" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("5_iseq0")
 volume_db = -16.0
+bus = &"MainMenuMusic"
 
 [node name="SwooshSound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("5_f37jh")
 volume_db = -15.0
+bus = &"sfx"
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("6_1kj7d")
 volume_db = -15.0
+bus = &"sfx"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("7_g6q07")
 volume_db = -15.0
+bus = &"sfx"
 
 [node name="Background Image" type="TextureRect" parent="."]
 layout_mode = 0
@@ -170,6 +186,117 @@ theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
 text = "Back"
 flat = true
 
+[node name="Master Sound" type="HSlider" parent="Options Menu"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 327.0
+offset_right = 976.0
+offset_bottom = 520.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Sound Name" type="Label" parent="Options Menu/Master Sound"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 33.9999
+offset_right = 164.0
+offset_bottom = 56.9999
+text = "MASTER SOUND"
+label_settings = SubResource("LabelSettings_qx8qx")
+
+[node name="Sound Icon" type="TextureRect" parent="Options Menu/Master Sound"]
+layout_mode = 0
+offset_left = -125.0
+offset_top = 57.0
+offset_right = 1875.0
+offset_bottom = 2057.0
+scale = Vector2(0.0463276, 0.0463276)
+texture = ExtResource("10_mxwkk")
+
+[node name="Sound Level" type="Label" parent="Options Menu/Master Sound"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 76.9999
+offset_right = 790.0
+offset_bottom = 117.0
+text = "100"
+label_settings = SubResource("LabelSettings_moy1g")
+
+[node name="Music Sound" type="HSlider" parent="Options Menu"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 457.0
+offset_right = 976.0
+offset_bottom = 650.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Sound Name" type="Label" parent="Options Menu/Music Sound"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 33.9999
+offset_right = 164.0
+offset_bottom = 56.9999
+text = "MUSIC SOUND"
+label_settings = SubResource("LabelSettings_qx8qx")
+
+[node name="Sound Icon" type="TextureRect" parent="Options Menu/Music Sound"]
+layout_mode = 0
+offset_left = -125.0
+offset_top = 57.0
+offset_right = 1875.0
+offset_bottom = 2057.0
+scale = Vector2(0.0463276, 0.0463276)
+texture = ExtResource("10_mxwkk")
+
+[node name="Sound Level" type="Label" parent="Options Menu/Music Sound"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 76.9999
+offset_right = 790.0
+offset_bottom = 117.0
+text = "100"
+label_settings = SubResource("LabelSettings_moy1g")
+
+[node name="SFX Sound" type="HSlider" parent="Options Menu"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 586.0
+offset_right = 976.0
+offset_bottom = 779.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Sound Name" type="Label" parent="Options Menu/SFX Sound"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 33.9999
+offset_right = 164.0
+offset_bottom = 56.9999
+text = "SFX SOUND"
+label_settings = SubResource("LabelSettings_qx8qx")
+
+[node name="Sound Icon" type="TextureRect" parent="Options Menu/SFX Sound"]
+layout_mode = 0
+offset_left = -125.0
+offset_top = 57.0
+offset_right = 1875.0
+offset_bottom = 2057.0
+scale = Vector2(0.0463276, 0.0463276)
+texture = ExtResource("10_mxwkk")
+
+[node name="Sound Level" type="Label" parent="Options Menu/SFX Sound"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 76.9999
+offset_right = 790.0
+offset_bottom = 117.0
+text = "100"
+label_settings = SubResource("LabelSettings_moy1g")
+
 [connection signal="finished" from="Sound Manager/backgroundMusic1" to="Sound Manager" method="_on_background_music_1_finished"]
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_pressed"]
@@ -180,3 +307,6 @@ flat = true
 [connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="Main Menu/MainMenuButtons/QuitButton" method="_on_pressed"]
 [connection signal="mouse_entered" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Options Menu/Master Sound" to="Sound Manager" method="_on_master_sound_value_changed"]
+[connection signal="value_changed" from="Options Menu/Music Sound" to="Sound Manager" method="_on_music_sound_value_changed"]
+[connection signal="value_changed" from="Options Menu/SFX Sound" to="Sound Manager" method="_on_sfx_sound_value_changed"]
