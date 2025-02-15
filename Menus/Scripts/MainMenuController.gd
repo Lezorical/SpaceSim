@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 #Start button Actions
 func _on_start_button_pressed() -> void:
 	click_sound.play()
+	print("start")
 
 #option button Actions
 func _on_options_button_pressed() -> void:

@@ -1,13 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://b55w3fi6ujxe3"]
+[gd_scene load_steps=15 format=3 uid="uid://b55w3fi6ujxe3"]
 
 [ext_resource type="Script" path="res://Menus/Scripts/MainMenuController.gd" id="1_k3e35"]
 [ext_resource type="Script" path="res://Menus/Scripts/main_menu_sound_manager.gd" id="2_n0sxy"]
-[ext_resource type="AudioStream" uid="uid://doyvr1c2cq3ea" path="res://Menus/Music/Menu Music/backgroundmusic1.mp3" id="3_ki7hp"]
-[ext_resource type="AudioStream" uid="uid://uwsyacvwgr7o" path="res://Menus/Music/Menu Music/backgroundmusic2.mp3" id="4_m2lyy"]
-[ext_resource type="AudioStream" uid="uid://bdydhwhstq8pa" path="res://Menus/Menu Sounds/swooshsound.mp3" id="5_f37jh"]
-[ext_resource type="AudioStream" uid="uid://dq44mgkr3w5e7" path="res://Menus/Music/Menu Music/Outer World.mp3" id="5_iseq0"]
-[ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Menus/Menu Sounds/hoverSound.mp3" id="6_1kj7d"]
-[ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Menus/Menu Sounds/clickSound1.mp3" id="7_g6q07"]
+[ext_resource type="AudioStream" uid="uid://uwsyacvwgr7o" path="res://Game Music/backgroundmusic2.mp3" id="3_gtr6m"]
+[ext_resource type="AudioStream" path="res://Menus/Menu Sounds/swooshsound.mp3" id="5_f37jh"]
+[ext_resource type="AudioStream" uid="uid://dq44mgkr3w5e7" path="res://Game Music/Outer World.mp3" id="5_ymjbt"]
+[ext_resource type="AudioStream" path="res://Menus/Menu Sounds/hoverSound.mp3" id="6_1kj7d"]
+[ext_resource type="AudioStream" path="res://Menus/Menu Sounds/clickSound1.mp3" id="7_g6q07"]
 [ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="8_0kq35"]
 [ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="10_mxwkk"]
 
@@ -44,17 +43,16 @@ main_menu_bus = "MainMenuMusic"
 sfx_bus = "sfx"
 
 [node name="backgroundMusic1" type="AudioStreamPlayer" parent="Sound Manager"]
-stream = ExtResource("3_ki7hp")
 volume_db = -15.0
 bus = &"MainMenuMusic"
 
 [node name="backgroundMusic2" type="AudioStreamPlayer" parent="Sound Manager"]
-stream = ExtResource("4_m2lyy")
+stream = ExtResource("3_gtr6m")
 volume_db = -15.0
 bus = &"MainMenuMusic"
 
 [node name="backgroundMusic3" type="AudioStreamPlayer" parent="Sound Manager"]
-stream = ExtResource("5_iseq0")
+stream = ExtResource("5_ymjbt")
 volume_db = -16.0
 bus = &"MainMenuMusic"
 
@@ -74,7 +72,6 @@ volume_db = -15.0
 bus = &"sfx"
 
 [node name="Background Image" type="TextureRect" parent="."]
-layout_mode = 0
 offset_right = 3840.0
 offset_bottom = 1080.0
 texture = ExtResource("8_0kq35")
@@ -89,6 +86,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
 [node name="Main Menu" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -148,6 +146,7 @@ text = "Quit"
 flat = true
 
 [node name="Options Menu" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 1920.0
 offset_right = 3840.0
@@ -297,7 +296,6 @@ offset_bottom = 117.0
 text = "100"
 label_settings = SubResource("LabelSettings_moy1g")
 
-[connection signal="finished" from="Sound Manager/backgroundMusic1" to="Sound Manager" method="_on_background_music_1_finished"]
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/OptionsButton" to="." method="_on_options_button_mouse_entered"]
