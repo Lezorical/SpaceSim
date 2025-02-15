@@ -9,6 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Menus/Music/Menu Music/clickSound1.mp3" id="7_g6q07"]
 [ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="8_0kq35"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_uj1lj"]
+font_size = 21
+
 [sub_resource type="LabelSettings" id="LabelSettings_i3pit"]
 font_size = 130
 font_color = Color(0.403922, 0.0588235, 0.25098, 0.627451)
@@ -16,9 +19,6 @@ font_color = Color(0.403922, 0.0588235, 0.25098, 0.627451)
 [sub_resource type="LabelSettings" id="LabelSettings_lfya7"]
 font_size = 130
 font_color = Color(0.403922, 0.0588235, 0.25098, 0.627451)
-
-[sub_resource type="LabelSettings" id="LabelSettings_uj1lj"]
-font_size = 21
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -72,15 +72,24 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
+[node name="Version Control Label" type="Label" parent="Main Menu"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 1040.0
+offset_right = 155.0
+offset_bottom = 1070.0
+text = "Version: 0.1"
+label_settings = SubResource("LabelSettings_uj1lj")
+
 [node name="GameName" type="Label" parent="Main Menu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -292.5
-offset_top = 57.0
-offset_right = 292.5
-offset_bottom = 231.0
+offset_left = -316.5
+offset_top = 80.0
+offset_right = 316.5
+offset_bottom = 258.0
 grow_horizontal = 2
 text = "Space Sim"
 label_settings = SubResource("LabelSettings_i3pit")
@@ -128,10 +137,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -151.0
-offset_top = 110.0
-offset_right = -77.0
-offset_bottom = 133.0
+offset_left = -248.0
+offset_top = 80.0
+offset_right = 248.0
+offset_bottom = 258.0
 grow_horizontal = 2
 text = "Options"
 label_settings = SubResource("LabelSettings_lfya7")
@@ -155,15 +164,6 @@ layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
 text = "Back"
 flat = true
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 1040.0
-offset_right = 155.0
-offset_bottom = 1070.0
-text = "Version: 0.1"
-label_settings = SubResource("LabelSettings_uj1lj")
 
 [connection signal="finished" from="Sound Manager/backgroundMusic1" to="Sound Manager" method="_on_background_music_1_finished"]
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
