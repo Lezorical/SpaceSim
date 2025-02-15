@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://b55w3fi6ujxe3"]
+[gd_scene load_steps=13 format=3 uid="uid://b55w3fi6ujxe3"]
 
-[ext_resource type="Script" path="res://Menus/MainMenuController.gd" id="1_k3e35"]
-[ext_resource type="Script" path="res://Menus/main_menu_sound_manager.gd" id="2_n0sxy"]
+[ext_resource type="Script" path="res://Menus/Scripts/MainMenuController.gd" id="1_k3e35"]
+[ext_resource type="Script" path="res://Menus/Scripts/main_menu_sound_manager.gd" id="2_n0sxy"]
 [ext_resource type="AudioStream" uid="uid://doyvr1c2cq3ea" path="res://Menus/Music/Menu Music/backgroundmusic1.mp3" id="3_ki7hp"]
 [ext_resource type="AudioStream" uid="uid://uwsyacvwgr7o" path="res://Menus/Music/Menu Music/backgroundmusic2.mp3" id="4_m2lyy"]
-[ext_resource type="AudioStream" uid="uid://bdydhwhstq8pa" path="res://Menus/Music/Menu Music/swooshsound.mp3" id="5_f37jh"]
-[ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Menus/Music/Menu Music/hoverSound.mp3" id="6_1kj7d"]
-[ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Menus/Music/Menu Music/clickSound1.mp3" id="7_g6q07"]
+[ext_resource type="AudioStream" uid="uid://bdydhwhstq8pa" path="res://Menus/Menu Sounds/swooshsound.mp3" id="5_f37jh"]
+[ext_resource type="AudioStream" uid="uid://dq44mgkr3w5e7" path="res://Menus/Music/Menu Music/Outer World.mp3" id="5_iseq0"]
+[ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Menus/Menu Sounds/hoverSound.mp3" id="6_1kj7d"]
+[ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Menus/Menu Sounds/clickSound1.mp3" id="7_g6q07"]
 [ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="8_0kq35"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uj1lj"]
@@ -39,6 +40,10 @@ volume_db = -15.0
 [node name="backgroundMusic2" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("4_m2lyy")
 volume_db = -15.0
+
+[node name="backgroundMusic3" type="AudioStreamPlayer" parent="Sound Manager"]
+stream = ExtResource("5_iseq0")
+volume_db = -16.0
 
 [node name="SwooshSound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("5_f37jh")

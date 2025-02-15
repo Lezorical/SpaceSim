@@ -2,6 +2,7 @@ extends Node
 
 @onready var background_music_1 = $backgroundMusic1
 @onready var background_music_2 = $backgroundMusic2
+@onready var background_music_3 = $backgroundMusic3
 
 var current_playing : int = 0
 
@@ -12,7 +13,7 @@ func _on_audio_stream_finished() -> void:
 	
 	# Play the other track.
 	if current_playing == 0:
-		background_music_2.play()
+		background_music_3.play()
 		current_playing = 1
 	else:
 		background_music_1.play()
@@ -29,7 +30,7 @@ func _ready() -> void:
 		background_music_1.play()
 		current_playing = 0
 	else:
-		background_music_2.play()
+		background_music_3.play()
 		current_playing = 1
 	
 	background_music_1.finished.connect(_on_audio_stream_finished)
