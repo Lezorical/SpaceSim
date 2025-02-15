@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Menus/Menu Sounds/hoverSound.mp3" id="6_1kj7d"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Menus/Menu Sounds/clickSound1.mp3" id="7_g6q07"]
 [ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="8_0kq35"]
-[ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://soundIcon.png" id="10_mxwkk"]
+[ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="10_mxwkk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uj1lj"]
 font_size = 21
