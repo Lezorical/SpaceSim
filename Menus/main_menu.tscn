@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b55w3fi6ujxe3"]
+[gd_scene load_steps=11 format=3 uid="uid://b55w3fi6ujxe3"]
 
 [ext_resource type="Script" path="res://Menus/MainMenuController.gd" id="1_jigko"]
 [ext_resource type="Script" path="res://Menus/main_menu_sound_manager.gd" id="2_16hx3"]
 [ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="2_n2p3p"]
 [ext_resource type="AudioStream" uid="uid://doyvr1c2cq3ea" path="res://Menus/Music/Menu Music/backgroundmusic1.mp3" id="3_erv1t"]
 [ext_resource type="AudioStream" uid="uid://uwsyacvwgr7o" path="res://Menus/Music/Menu Music/backgroundmusic2.mp3" id="4_q8jvj"]
+[ext_resource type="AudioStream" uid="uid://bdydhwhstq8pa" path="res://Menus/Music/Menu Music/swooshsound.mp3" id="5_ai2qe"]
+[ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Menus/Music/Menu Music/hoverSound.mp3" id="6_c45xd"]
+[ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Menus/Music/Menu Music/clickSound1.mp3" id="7_gposc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i3pit"]
 font_size = 130
@@ -34,6 +37,18 @@ volume_db = -15.0
 stream = ExtResource("4_q8jvj")
 volume_db = -15.0
 
+[node name="SwooshSound" type="AudioStreamPlayer" parent="Sound Manager"]
+stream = ExtResource("5_ai2qe")
+volume_db = -15.0
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="Sound Manager"]
+stream = ExtResource("6_c45xd")
+volume_db = -15.0
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="Sound Manager"]
+stream = ExtResource("7_gposc")
+volume_db = -15.0
+
 [node name="Background Image" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 3840.0
@@ -47,7 +62,7 @@ expand_mode = 1
 position = Vector2(960, 540)
 scale = Vector2(1e-05, 1e-05)
 position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+position_smoothing_speed = 8.0
 
 [node name="Main Menu" type="Control" parent="."]
 anchors_preset = 0
@@ -139,8 +154,12 @@ text = "Back"
 flat = true
 
 [connection signal="finished" from="Sound Manager/backgroundMusic1" to="Sound Manager" method="_on_background_music_1_finished"]
+[connection signal="mouse_entered" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="Main Menu/MainMenuButtons/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="Main Menu/MainMenuButtons/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="Main Menu/MainMenuButtons/QuitButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_pressed"]
