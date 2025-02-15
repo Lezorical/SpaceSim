@@ -7,12 +7,12 @@ var OptionsMenuCameraPosition : int = 1920
 @onready var hover_sound = $"Sound Manager/HoverSound"
 @onready var click_sound = $"Sound Manager/ClickSound"
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	$CameraHolder/MainMenuCamera.make_current()
 	$CameraHolder/MainMenuCamera.position_smoothing_enabled
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	pass
 
@@ -39,7 +39,7 @@ func _on_back_button_pressed() -> void:
 
 
 
-#Play sound when mouse touches buttons
+#Play sound when mouse enters buttons
 func _on_start_button_mouse_entered() -> void:
 	hover_sound.play()
 
