@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 #Start button Actions
 func _on_start_button_pressed() -> void:
 	click_sound.play()
-	print("start")
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	
 
 #option button Actions
 func _on_options_button_pressed() -> void:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bru0e8bwk7as0"
+path="res://.godot/imported/Sky High.mp3-77077c2ab539445c4b544d647e6596bc.mp3str"
+
+[deps]
+
+source_file="res://File Drop/Sky High.mp3"
+dest_files=["res://.godot/imported/Sky High.mp3-77077c2ab539445c4b544d647e6596bc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

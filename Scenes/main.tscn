@@ -1,0 +1,120 @@
+[gd_scene load_steps=19 format=3 uid="uid://cbutlcdf6151o"]
+
+[ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://Images/93034.jpg" id="1_ikb5s"]
+[ext_resource type="Texture2D" uid="uid://bxijtrtwxi4yq" path="res://Images/1000_F_364910470_DCjyTv7AlFX0or7TGEcJWkz7JDLnCE5G.jpg" id="2_3ty1w"]
+[ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="2_pncde"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fhlwm"]
+panorama = ExtResource("1_ikb5s")
+
+[sub_resource type="Sky" id="Sky_vmd3f"]
+sky_material = SubResource("PanoramaSkyMaterial_fhlwm")
+
+[sub_resource type="Environment" id="Environment_jjhs0"]
+background_mode = 2
+sky = SubResource("Sky_vmd3f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6bwr"]
+albedo_texture = ExtResource("2_3ty1w")
+
+[sub_resource type="SphereMesh" id="SphereMesh_e26ns"]
+radius = 1000.0
+height = 2000.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p0660"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjfy4"]
+albedo_texture = SubResource("CanvasTexture_p0660")
+
+[sub_resource type="Animation" id="Animation_d7f5y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4ejhu"]
+resource_name = "rotate"
+length = 1000.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 999.167),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ohxld"]
+_data = {
+"RESET": SubResource("Animation_d7f5y"),
+"rotate": SubResource("Animation_4ejhu")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_2lv2r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sep1m"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4oqcb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5y22"]
+albedo_color = Color(0.947054, 0.781557, 0.115122, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jujd4"]
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jjhs0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.849782, 0.527134, 0, -0.527134, 0.849782, 0, 11.8103, 2431.28)
+
+[node name="Planet" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_m6bwr")
+mesh = SubResource("SphereMesh_e26ns")
+surface_material_override/0 = SubResource("StandardMaterial3D_wjfy4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Planet"]
+libraries = {
+"": SubResource("AnimationLibrary_ohxld")
+}
+autoplay = "rotate"
+
+[node name="Platform" type="StaticBody3D" parent="."]
+transform = Transform3D(83.2079, 0, 0, 0, 1, 0, 0, 0, 55.1538, 0, 0, 2427.51)
+
+[node name="Mesh" type="MeshInstance3D" parent="Platform"]
+mesh = SubResource("BoxMesh_2lv2r")
+skeleton = NodePath("../Collision")
+
+[node name="Collision" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("BoxShape3D_sep1m")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5975, 2431.28)
+script = ExtResource("2_pncde")
+
+[node name="Mesh" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_4oqcb")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5y22")
+
+[node name="Collider" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_jujd4")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605464, 0)
+current = true
