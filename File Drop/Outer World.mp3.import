@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dq44mgkr3w5e7"
-path="res://.godot/imported/Outer World.mp3-3ba1a8a96402bbe51401af47b93661c2.mp3str"
+path="res://.godot/imported/Outer World.mp3-4fd9295160b43f886090d8a1a8495d32.mp3str"
 
 [deps]
 
-source_file="res://Menus/Music/Menu Music/Outer World.mp3"
-dest_files=["res://.godot/imported/Outer World.mp3-3ba1a8a96402bbe51401af47b93661c2.mp3str"]
+source_file="res://File Drop/Outer World.mp3"
+dest_files=["res://.godot/imported/Outer World.mp3-4fd9295160b43f886090d8a1a8495d32.mp3str"]
 
 [params]
 
