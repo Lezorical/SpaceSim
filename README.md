@@ -2,7 +2,16 @@
 A space sim colony type of game
 
 GAME GOAL:
-A game in which you can build/modify ships to explore and gather resources. "Enemys" from other species both primitive and advanced with everything in between racing to do the same.
+A game in which you can build ships to explore and gather resources. "Enemys" from other species both primitive and advanced with everything in between racing to do the same.
+Ultimate colony sim, will include base defence mechanics, AIs to control your modules. Interesting mechanics that combine aspects of multiple games including Kerbal Space Program, Storm works and a few more.
+
+Version 1.0 will consist of the following
+1. very basic menu systems
+2. very basic building menu
+3. basic propulsion of ships
+4. basic character controller
+5. devmode for debugging
+6. an anviorment in which you "spawn" and can act as a first base
 
 Current Species count: 0
 
