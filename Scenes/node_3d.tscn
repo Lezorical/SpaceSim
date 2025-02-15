@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbutlcdf6151o"]
+
+[ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://File Drop/93034.jpg" id="1_ikb5s"]
+[ext_resource type="Script" path="res://Scenes/character_body_3d.gd" id="2_pncde"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fhlwm"]
+panorama = ExtResource("1_ikb5s")
+
+[sub_resource type="Sky" id="Sky_vmd3f"]
+sky_material = SubResource("PanoramaSkyMaterial_fhlwm")
+
+[sub_resource type="Environment" id="Environment_jjhs0"]
+background_mode = 2
+sky = SubResource("Sky_vmd3f")
+
+[sub_resource type="SphereMesh" id="SphereMesh_e26ns"]
+radius = 1000.0
+height = 2000.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_2lv2r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sep1m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jujd4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jjhs0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_e26ns")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(83.2079, 0, 0, 0, 1, 0, 0, 0, 55.1538, 0, 0, 2427.51)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_2lv2r")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_sep1m")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5975, 2431.28)
+script = ExtResource("2_pncde")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605464, 0)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_jujd4")

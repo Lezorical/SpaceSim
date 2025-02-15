@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c82s6hibsdtuf"]
+
+[node name="Game Manager" type="Node"]
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="World3D" type="Node3D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
