@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cjg3vtwi6whoq"
+path="res://.godot/imported/Slot_Machine.obj-7fffc4dfcafbad34d7ceacb89ce9ee50.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Slot_Machine.obj-7fffc4dfcafbad34d7ceacb89ce9ee50.mesh"]
+
+source_file="res://File Drop/Slot_Machine.obj"
+dest_files=["res://.godot/imported/Slot_Machine.obj-7fffc4dfcafbad34d7ceacb89ce9ee50.mesh", "res://.godot/imported/Slot_Machine.obj-7fffc4dfcafbad34d7ceacb89ce9ee50.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -3,9 +3,7 @@ extends CharacterBody3D
 
 @export_group("Character Movement Settings")
 @export var max_speed : float = 4.0
-@export var acceleration : float = 20.0
 @export var braking : float = 20.0
-@export var air_acceleration : float = 4.0
 @export var jump_force : float = 5.0
 @export var gravity_modifyer : float = 1.5
 @export var max_run_speed : float = 6.0
@@ -13,7 +11,7 @@ extends CharacterBody3D
 
 var is_running : bool = false
 
-@export_category("Sensitivity")
+@export_category("Mouse Sensitivity")
 @export var look_sensitivity : float = 0.005
 var camera_look_input : Vector2
 
@@ -24,6 +22,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func _physics_process(delta: float) -> void:
+	
+	print(velocity.x)
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
