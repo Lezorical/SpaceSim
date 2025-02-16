@@ -7,11 +7,12 @@ var collider = $".".get_collider()
 func _ready() -> void:
 	pass
 
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#$"../../InteractSprite".hide()
+	
 	await get_tree().create_timer(0.01).timeout
-	#$"../../ISCOLLIDING".text = str("COLLIDING: ", is_colliding())
 	
 	if is_colliding():
 		var collider = get_collider()
