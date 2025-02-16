@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cbutlcdf6151o"]
+[gd_scene load_steps=37 format=3 uid="uid://cbutlcdf6151o"]
 
 [ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://Images/93034.jpg" id="1_ikb5s"]
 [ext_resource type="Texture2D" uid="uid://bxijtrtwxi4yq" path="res://Images/1000_F_364910470_DCjyTv7AlFX0or7TGEcJWkz7JDLnCE5G.jpg" id="2_3ty1w"]
@@ -92,6 +92,9 @@ albedo_color = Color(0.947054, 0.781557, 0.115122, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qybx5"]
 font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfmaw"]
+font_size = 181
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wycf"]
 albedo_texture = ExtResource("5_uudtx")
@@ -209,6 +212,20 @@ label_settings = SubResource("LabelSettings_qybx5")
 position = Vector2(960, 824)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_wfnm3")
+
+[node name="Label" type="Label" parent="Player/InteractSprite"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -227.0
+offset_right = 520.0
+offset_bottom = 21.0001
+grow_vertical = 0
+text = "Press \"E\""
+label_settings = SubResource("LabelSettings_cfmaw")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buildermachine" type="StaticBody3D" parent="." groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1761, 0.499998, 2402.76)
