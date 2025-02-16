@@ -2,6 +2,7 @@ extends RayCast3D
 
 var collider = $".".get_collider()
 
+@onready var error_sound = $"../../../Sound Manager/AudioStreamPlayer3D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,10 @@ func _process(delta: float) -> void:
 		if collider.is_in_group("interactable"):
 			$"../../ISCOLLIDING".text = str("COLLIDING: ", is_colliding())
 			$"../../InteractSprite".visible = true
+			if Input.is_action_just_pressed("interact"):
+				error_sound.play()
+			
+			
 		else:
 			$"../../InteractSprite".hide()
 	else:
