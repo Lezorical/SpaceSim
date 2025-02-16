@@ -15,11 +15,14 @@ func _process(delta: float) -> void:
 	await get_tree().create_timer(0.01).timeout
 	
 	if is_colliding():
+		
 		var collider = get_collider()
+		
 		if collider.is_in_group("interactable"):
 			$"../../ISCOLLIDING".text = str("COLLIDING: ", is_colliding())
 			$"../../InteractSprite".visible = true
-			
+		else:
+			$"../../InteractSprite".hide()
 	else:
 		$"../../ISCOLLIDING".text = str("COLLIDING: ", is_colliding())
 		$"../../InteractSprite".hide()

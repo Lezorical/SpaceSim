@@ -230,19 +230,14 @@ vertical_alignment = 1
 [node name="Buildermachine" type="StaticBody3D" parent="." groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1761, 0.499998, 2402.76)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildermachine" groups=["interactable"]]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buildermachine"]
 transform = Transform3D(0.0458225, 0, 0, 0, 0.0458225, 0, 0, 0, 0.0458225, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_8wycf")
 mesh = ExtResource("6_pko13")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildermachine" groups=["interactable"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildermachine"]
 transform = Transform3D(0.0458225, 0, 0, 0, 0.0458225, 0, 0, 0, 0.0458225, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_mep56")
-
-[node name="Mesh" type="MeshInstance3D" parent="Buildermachine/CollisionShape3D" groups=["interactable"]]
-material_override = SubResource("StandardMaterial3D_qdv13")
-mesh = SubResource("BoxMesh_2lv2r")
-skeleton = NodePath("../Collision")
 
 [node name="Label3D" type="Label3D" parent="Buildermachine"]
 transform = Transform3D(1, 0, 0, 0, 0.950662, 0.310228, 0, -0.310228, 0.950662, 0, 2.73153, 0.692627)
