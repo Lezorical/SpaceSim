@@ -99,7 +99,7 @@ offset_left = 38.0
 offset_top = 1040.0
 offset_right = 155.0
 offset_bottom = 1070.0
-text = "Version: 0.1"
+text = "Version: 0.1.1"
 label_settings = SubResource("LabelSettings_uj1lj")
 
 [node name="GameName" type="Label" parent="Main Menu"]
