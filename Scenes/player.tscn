@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://ce217mf1p608r"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_fya8s"]
+[ext_resource type="Script" path="res://Scripts/ray_cast_3d.gd" id="2_ss5jm"]
+[ext_resource type="Script" path="res://Scripts/FPS Counter.gd" id="3_xnbl5"]
+[ext_resource type="Script" path="res://Scripts/Speed.gd" id="4_tep6y"]
+[ext_resource type="Script" path="res://Scripts/timescale.gd" id="5_sq07p"]
+[ext_resource type="Texture2D" uid="uid://dvupn6lwbxron" path="res://Images/select.png" id="6_e5e2f"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4oqcb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5y22"]
+albedo_color = Color(0.947054, 0.781557, 0.115122, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jujd4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qybx5"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfmaw"]
+font_size = 181
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05286, 92823.2)
+visible = false
+script = ExtResource("1_fya8s")
+max_speed = 6.0
+max_run_speed = 9.0
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4oqcb")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5y22")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_jujd4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605464, 0)
+far = 80000.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-07, -1, 0, 10, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_ss5jm")
+
+[node name="FPS" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS: null"
+label_settings = SubResource("LabelSettings_qybx5")
+script = ExtResource("3_xnbl5")
+
+[node name="SPEED" type="Label" parent="."]
+offset_left = 250.0
+offset_right = 404.0
+offset_bottom = 53.0
+text = "SPEED: null"
+label_settings = SubResource("LabelSettings_qybx5")
+script = ExtResource("4_tep6y")
+
+[node name="TIMESCALE" type="Label" parent="."]
+offset_left = 541.0
+offset_right = 745.0
+offset_bottom = 53.0
+text = "TIMESCALE: null"
+label_settings = SubResource("LabelSettings_qybx5")
+script = ExtResource("5_sq07p")
+
+[node name="ISCOLLIDING" type="Label" parent="."]
+offset_left = 857.0
+offset_right = 1148.0
+offset_bottom = 53.0
+text = "COLLIDING: null"
+label_settings = SubResource("LabelSettings_qybx5")
+
+[node name="InteractSprite" type="Sprite2D" parent="."]
+position = Vector2(960, 824)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_e5e2f")
+
+[node name="Label" type="Label" parent="InteractSprite"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -227.0
+offset_right = 520.0
+offset_bottom = 21.0001
+grow_vertical = 0
+text = "Press \"E\""
+label_settings = SubResource("LabelSettings_cfmaw")
+horizontal_alignment = 1
+vertical_alignment = 1
