@@ -125,6 +125,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "No"
 
+[node name="Quit Button" type="Button" parent="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Quit to desktop"
+
 [node name="Cube 0_5" parent="." instance=ExtResource("2_1adks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75859, 0)
 
@@ -143,3 +148,5 @@ shape = SubResource("BoxShape3D_x0kql")
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Yes Button" to="Game Manager/Button Actions" method="_on_yes_button_pressed"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="Game Manager/Button Actions" method="_on_no_button_mouse_entered"]
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="Game Manager/Button Actions" method="_on_no_button_pressed"]
+[connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_mouse_entered"]
+[connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_pressed"]

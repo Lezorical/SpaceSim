@@ -19,12 +19,16 @@ func _ready() -> void:
 func _on_main_menu_button_pressed() -> void:
 	ButtonPressedSound.play()
 	Are_You_Sure_prompt.visible = true
+	Engine.time_scale = 0
 func _on_yes_button_pressed() -> void:
 	ButtonPressedSound.play()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 func _on_no_button_pressed() -> void:
 	ButtonPressedSound.play()
 	Are_You_Sure_prompt.visible = false
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
+
 
 
 
@@ -37,4 +41,5 @@ func _on_yes_button_mouse_entered() -> void:
 	_PlayMouseEnteredSound()
 func _on_no_button_mouse_entered() -> void:
 	_PlayMouseEnteredSound()
-	
+func _on_quit_button_mouse_entered() -> void:
+	_PlayMouseEnteredSound()
