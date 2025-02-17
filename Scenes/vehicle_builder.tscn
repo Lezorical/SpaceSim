@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://0i0l5kjf1ots"]
+[gd_scene load_steps=14 format=3 uid="uid://0i0l5kjf1ots"]
 
+[ext_resource type="Script" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
 [ext_resource type="PackedScene" uid="uid://d4dteludr3m0s" path="res://assets/Vehicle Builder/Blocks/cube_0_5x0_5.tscn" id="2_1adks"]
 [ext_resource type="Script" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
+[ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="2_jb2sb"]
 [ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://Images/SettingsIcon.png" id="2_ywmqw"]
-[ext_resource type="Script" path="res://Scripts/main_menu_button.gd" id="3_l2qxg"]
+[ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="3_lll6w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgjx6"]
 
@@ -29,6 +31,19 @@ size = Vector3(30, 0.2, 30)
 size = Vector3(30, 0.2, 30)
 
 [node name="Vehicle Builder" type="Node"]
+
+[node name="Game Manager" type="Node" parent="."]
+
+[node name="Button Actions" type="Node" parent="Game Manager"]
+script = ExtResource("1_gy6cq")
+
+[node name="Sound Manager" type="Node" parent="."]
+
+[node name="Button Click Sound" type="AudioStreamPlayer" parent="Sound Manager"]
+stream = ExtResource("2_jb2sb")
+
+[node name="Button Hover Sound" type="AudioStreamPlayer" parent="Sound Manager"]
+stream = ExtResource("3_lll6w")
 
 [node name="Environment" type="Node" parent="."]
 
@@ -78,10 +93,8 @@ offset_top = 23.0
 offset_right = 1832.0
 offset_bottom = 54.0
 text = "Main Menu"
-script = ExtResource("3_l2qxg")
 
 [node name="Are you sure Prompt" type="VBoxContainer" parent="GUI/Building Screen/Main/Main Menu Button"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -123,6 +136,10 @@ mesh = SubResource("BoxMesh_mtopj")
 [node name="Collision" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_x0kql")
 
-[connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" method="_on_pressed"]
-[connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Yes Button" to="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" method="_on_yes_button_pressed"]
-[connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" method="_on_no_button_pressed"]
+[connection signal="mouse_entered" from="GUI/Building Screen/Main/Settings Button" to="Game Manager/Button Actions" method="_on_settings_button_mouse_entered"]
+[connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_mouse_entered"]
+[connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_pressed"]
+[connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Yes Button" to="Game Manager/Button Actions" method="_on_yes_button_mouse_entered"]
+[connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Yes Button" to="Game Manager/Button Actions" method="_on_yes_button_pressed"]
+[connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="Game Manager/Button Actions" method="_on_no_button_mouse_entered"]
+[connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="Game Manager/Button Actions" method="_on_no_button_pressed"]
