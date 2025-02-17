@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://0i0l5kjf1ots"]
+
+[ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://Images/93034.jpg" id="1_62rip"]
+[ext_resource type="Script" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
+[ext_resource type="Script" path="res://Scripts/cube.gd" id="3_ktsex"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4bqyn"]
+panorama = ExtResource("1_62rip")
+
+[sub_resource type="Sky" id="Sky_vmd3f"]
+sky_material = SubResource("PanoramaSkyMaterial_4bqyn")
+
+[sub_resource type="Environment" id="Environment_aygpc"]
+background_mode = 2
+sky = SubResource("Sky_vmd3f")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jusvy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wcqx8"]
+
+[node name="Vehicle Builder" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aygpc")
+
+[node name="Camera Holder" type="Node" parent="."]
+
+[node name="MeshCamera" type="Camera3D" parent="Camera Holder"]
+transform = Transform3D(0.707107, -0.353553, 0.612373, 0, 0.866026, 0.499999, -0.707107, -0.353553, 0.612373, 0, 0, 10.0406)
+current = true
+far = 200000.0
+script = ExtResource("2_gspcb")
+
+[node name="GUI" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="GUI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Vehicle Builder Version: Alpha V0.01"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0128427, 0, 0)
+shape = SubResource("BoxShape3D_jusvy")
+
+[node name="cube" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_wcqx8")
+skeleton = NodePath("")
+script = ExtResource("3_ktsex")

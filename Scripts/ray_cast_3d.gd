@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 			$"../../ISCOLLIDING".text = str("COLLIDING: ", is_colliding())
 			$"../../InteractSprite".visible = true
 			if Input.is_action_just_pressed("interact"):
-				error_sound.play()
+				get_tree().change_scene_to_file("res://Scenes/vehicle_builder.tscn")
 			
 			
 		else:

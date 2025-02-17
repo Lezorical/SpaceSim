@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@onready var camera= $"../../../MeshCamera"
+@onready var camera= $"../../Camera Holder/MeshCamera"
 @onready var area= $".."
 @export var scroll_speed: float = 0.5
 
