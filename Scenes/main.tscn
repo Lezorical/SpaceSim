@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cbutlcdf6151o"]
+[gd_scene load_steps=29 format=3 uid="uid://cbutlcdf6151o"]
 
 [ext_resource type="Texture2D" uid="uid://bxijtrtwxi4yq" path="res://Images/1000_F_364910470_DCjyTv7AlFX0or7TGEcJWkz7JDLnCE5G.jpg" id="2_3ty1w"]
 [ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://Images/93034.jpg" id="2_crfub"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cehlr2q78p4ev" path="res://File Drop/grunge-texture-png-01-1024x682.jpg" id="6_isvyo"]
 [ext_resource type="ArrayMesh" uid="uid://cjg3vtwi6whoq" path="res://File Drop/Slot_Machine.obj" id="6_pko13"]
 [ext_resource type="PackedScene" uid="uid://ce217mf1p608r" path="res://Scenes/player.tscn" id="10_n7be5"]
-[ext_resource type="AudioStream" uid="uid://bmopclpn2qba5" path="res://File Drop/erro.mp3" id="17_52w7p"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fhlwm"]
 panorama = ExtResource("2_crfub")
@@ -103,10 +102,6 @@ data = PackedVector3Array(-0.7206, 4.1918, -0.7206, 0.7205, 4.1918, -0.7206, -0.
 [node name="Main" type="Node3D"]
 
 [node name="Sound Manager" type="Node" parent="."]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sound Manager"]
-stream = ExtResource("17_52w7p")
-volume_db = 76.191
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jjhs0")
