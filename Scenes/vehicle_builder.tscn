@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://0i0l5kjf1ots"]
 
 [ext_resource type="Script" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
-[ext_resource type="PackedScene" uid="uid://d4dteludr3m0s" path="res://assets/Vehicle Builder/Blocks/cube_0_5x0_5.tscn" id="2_1adks"]
+[ext_resource type="Script" path="res://Scripts/item_selector.gd" id="2_b1j14"]
 [ext_resource type="Script" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="2_jb2sb"]
 [ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://Images/SettingsIcon.png" id="2_ywmqw"]
@@ -36,6 +36,9 @@ size = Vector3(30, 0.2, 30)
 
 [node name="Button Actions" type="Node" parent="Game Manager"]
 script = ExtResource("1_gy6cq")
+
+[node name="Item Selector" type="Node" parent="Game Manager"]
+script = ExtResource("2_b1j14")
 
 [node name="Sound Manager" type="Node" parent="."]
 
@@ -72,9 +75,8 @@ text = "Vehicle Builder Version: Alpha V0.01"
 
 [node name="Main" type="Control" parent="GUI/Building Screen"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="Settings Button" type="Button" parent="GUI/Building Screen/Main"]
 layout_mode = 0
@@ -130,8 +132,25 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Quit to desktop"
 
-[node name="Cube 0_5" parent="." instance=ExtResource("2_1adks")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75859, 0)
+[node name="ItemMenu" type="Node" parent="GUI/Building Screen/Main"]
+
+[node name="ItemSelectionPanel" type="Panel" parent="GUI/Building Screen/Main/ItemMenu"]
+custom_minimum_size = Vector2(450, 800)
+anchors_preset = -1
+offset_left = 1446.0
+offset_top = 136.0
+offset_right = 1896.0
+offset_bottom = 936.0
+
+[node name="ItemList" type="ItemList" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+custom_minimum_size = Vector2(450, 650)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+allow_reselect = true
+item_count = 1
+item_0/text = "Cube"
+item_0/selectable = false
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -140,6 +159,8 @@ mesh = SubResource("BoxMesh_mtopj")
 
 [node name="Collision" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_x0kql")
+
+[node name="camera" type="Camera3D" parent="."]
 
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Settings Button" to="Game Manager/Button Actions" method="_on_settings_button_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_mouse_entered"]
@@ -150,3 +171,4 @@ shape = SubResource("BoxShape3D_x0kql")
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="Game Manager/Button Actions" method="_on_no_button_pressed"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_pressed"]
+[connection signal="item_activated" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/ItemList" to="Game Manager/Item Selector" method="_on_item_list_item_activated"]

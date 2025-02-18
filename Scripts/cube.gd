@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@onready var camera= $"../../Camera Holder/Camera"
+@onready var camera= get_tree().get_root().get_node("Camera Holder/Camera")
 @onready var area= $".."
 @export var scroll_speed: float = 0.5
 
@@ -23,6 +23,7 @@ func _input(event):
 		var final_position= origin + end * depth
 		area.global_position=final_position
 		
+#Move Object closer and further with scroll wheel
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			var move_direction = (area.global_position - camera.global_position).normalized()
