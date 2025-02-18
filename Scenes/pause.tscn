@@ -1,23 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0xirorrqab3n"]
+[gd_scene load_steps=8 format=3 uid="uid://d0xirorrqab3n"]
 
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="1_bolqb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="1_locyo"]
+[ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="3_kcn4b"]
+[ext_resource type="Texture2D" uid="uid://cqvh3q8c0avek" path="res://Images/mouseSensitivty.png" id="3_wrt4b"]
 
 [sub_resource type="GDScript" id="GDScript_lbioe"]
 script/source = "extends CanvasLayer
 
 @onready var clickSound = $\"Sound Manager/ClickSound\"
 @onready var hoverSound = $\"Sound Manager/HoverSound\"
+@onready var optionsMenu = $Options
 
 var isPaused = false
 
+
 func _ready() -> void:
 	visible = false
+	optionsMenu.visible = false
 
 func _pause():
 	isPaused = true
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	visible = true
+	optionsMenu.visible = false
 	Engine.time_scale = 0
 	
 func _unpause():
@@ -40,9 +46,14 @@ func _on_resume_button_pressed() -> void:
 	_unpause()
 func _on_options_button_pressed() -> void:
 	clickSound.play()
+	optionsMenu.visible = true
 func _on_quit_button_pressed() -> void:
 	clickSound.play()
 	get_tree().quit()
+func _on_back_button_pressed() -> void:
+	clickSound.play()
+	optionsMenu.visible = false
+
 
 
 #play hover sound
@@ -52,10 +63,15 @@ func _on_options_button_mouse_entered() -> void:
 	hoverSound.play()
 func _on_quit_button_mouse_entered() -> void:
 	hoverSound.play()
+func _on_back_button_mouse_entered() -> void:
+	hoverSound.play()
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_i5wbe"]
 font_size = 87
+
+[sub_resource type="LabelSettings" id="LabelSettings_p0es4"]
+font_size = 43
 
 [node name="Pause Menu" type="CanvasLayer"]
 script = SubResource("GDScript_lbioe")
@@ -110,9 +126,240 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Quit"
 
+[node name="Options" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -400.0
+offset_right = 400.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 400)
+
+[node name="Panel" type="Panel" parent="Options"]
+layout_mode = 2
+
+[node name="Options Label" type="Label" parent="Options/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_right = 400.0
+offset_bottom = 59.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "Options"
+label_settings = SubResource("LabelSettings_p0es4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="Control" parent="Options/Panel"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -560.0
+offset_top = -140.0
+offset_right = -520.0
+offset_bottom = -100.0
+
+[node name="Master Sound" type="HSlider" parent="Options/Panel/Sound"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 690.0
+offset_top = 261.0
+offset_right = 1190.0
+offset_bottom = 277.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/Master Sound"]
+offset_left = -86.0
+offset_top = -30.0
+offset_right = 1914.0
+offset_bottom = 1970.0
+scale = Vector2(0.0355894, 0.0355894)
+texture = ExtResource("3_kcn4b")
+
+[node name="MasterLabel" type="Label" parent="Options/Panel/Sound/Master Sound"]
+layout_mode = 1
+offset_top = -32.0
+offset_right = 63.0
+offset_bottom = -9.0
+text = "MASTER"
+
+[node name="SoundLevel" type="Label" parent="Options/Panel/Sound/Master Sound"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -11.5
+offset_right = 54.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100"
+
+[node name="Music Sound" type="HSlider" parent="Options/Panel/Sound"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 690.0
+offset_top = 361.0
+offset_right = 1190.0
+offset_bottom = 377.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/Music Sound"]
+offset_left = -86.0
+offset_top = -30.0
+offset_right = 1914.0
+offset_bottom = 1970.0
+scale = Vector2(0.0355894, 0.0355894)
+texture = ExtResource("3_kcn4b")
+
+[node name="MusicLabel" type="Label" parent="Options/Panel/Sound/Music Sound"]
+layout_mode = 1
+offset_top = -32.0
+offset_right = 63.0
+offset_bottom = -9.0
+text = "MUSIC"
+
+[node name="SoundLevel" type="Label" parent="Options/Panel/Sound/Music Sound"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -11.5
+offset_right = 54.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100"
+
+[node name="Master Sound3" type="HSlider" parent="Options/Panel/Sound"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 690.0
+offset_top = 461.0
+offset_right = 1190.0
+offset_bottom = 477.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/Master Sound3"]
+offset_left = -86.0
+offset_top = -30.0
+offset_right = 1914.0
+offset_bottom = 1970.0
+scale = Vector2(0.0355894, 0.0355894)
+texture = ExtResource("3_kcn4b")
+
+[node name="SFXLabel" type="Label" parent="Options/Panel/Sound/Master Sound3"]
+layout_mode = 1
+offset_top = -32.0
+offset_right = 63.0
+offset_bottom = -9.0
+text = "SFX"
+
+[node name="SoundLevel" type="Label" parent="Options/Panel/Sound/Master Sound3"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -11.5
+offset_right = 54.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100"
+
+[node name="Look Sensitivity" type="HSlider" parent="Options/Panel"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 421.0
+offset_right = 250.0
+offset_bottom = 437.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.001
+value = 0.5
+
+[node name="SoundIcon" type="TextureRect" parent="Options/Panel/Look Sensitivity"]
+offset_left = -86.0
+offset_top = -30.0
+offset_right = 1914.0
+offset_bottom = 1970.0
+scale = Vector2(0.0355894, 0.0355894)
+texture = ExtResource("3_wrt4b")
+
+[node name="LookSensitivtyLabel" type="Label" parent="Options/Panel/Look Sensitivity"]
+layout_mode = 1
+offset_top = -32.0
+offset_right = 63.0
+offset_bottom = -9.0
+text = "Look Sensitivty"
+
+[node name="LookSensitivityLevel" type="Label" parent="Options/Panel/Look Sensitivity"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -11.5
+offset_right = 54.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "50"
+
+[node name="BackButton" type="Button" parent="Options/Panel"]
+layout_mode = 1
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 29
+text = "Back"
+
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="Options/Panel/BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="Options/Panel/BackButton" to="." method="_on_back_button_pressed"]
