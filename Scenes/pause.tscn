@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0xirorrqab3n"]
+[gd_scene load_steps=12 format=3 uid="uid://d0xirorrqab3n"]
 
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="1_bolqb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="1_locyo"]
@@ -13,6 +13,7 @@ script/source = "extends CanvasLayer
 @onready var clickSound = $\"Sound Manager/ClickSound\"
 @onready var hoverSound = $\"Sound Manager/HoverSound\"
 @onready var optionsMenu = $Options
+@onready var devMode = $Devmode
 
 var saveSettings = ConfigFile.new()
 
@@ -22,13 +23,18 @@ var isPaused = false
 func _ready() -> void:
 	visible = false
 	optionsMenu.visible = false
+	devMode.visible = false
 
 func _pause():
 	isPaused = true
+	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	Engine.time_scale = 0
+	
 	visible = true
 	optionsMenu.visible = false
-	Engine.time_scale = 0
+	devMode.visible = false
+	
 	
 func _unpause():
 	isPaused = false
@@ -57,9 +63,13 @@ func _on_quit_button_pressed() -> void:
 func _on_back_button_pressed() -> void:
 	clickSound.play()
 	optionsMenu.visible = false
-	
-func _on_save_button_pressed() -> void:
+func _on_devmode_pressed() -> void:
 	clickSound.play()
+	devMode.visible = true
+func _on_dev_back_button_pressed() -> void:
+	clickSound.play()
+	devMode.visible = false
+
 
 #play hover sound
 func _on_resume_button_mouse_entered() -> void:
@@ -72,13 +82,24 @@ func _on_back_button_mouse_entered() -> void:
 	hoverSound.play()
 func _on_save_button_mouse_entered() -> void:
 	hoverSound.play()
+func _on_devmode_mouse_entered() -> void:
+	hoverSound.play()
+func _on_dev_back_button_mouse_entered() -> void:
+	hoverSound.play()
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_i5wbe"]
 font_size = 87
 
+[sub_resource type="LabelSettings" id="LabelSettings_l7a3r"]
+font_size = 39
+
 [sub_resource type="LabelSettings" id="LabelSettings_p0es4"]
 font_size = 43
+
+[sub_resource type="LabelSettings" id="LabelSettings_owwc5"]
+font_size = 65
+font_color = Color(0.733331, 0.587687, 0.549451, 1)
 
 [node name="Pause Menu" type="CanvasLayer"]
 script = SubResource("GDScript_lbioe")
@@ -152,6 +173,15 @@ pivot_offset = Vector2(400, 400)
 
 [node name="Panel" type="Panel" parent="Options"]
 layout_mode = 2
+
+[node name="DELETE THIS" type="Label" parent="Options/Panel"]
+layout_mode = 2
+offset_left = 794.0
+offset_top = 13.0
+offset_right = 1594.0
+offset_bottom = 67.0
+text = "<-- DEVMODE ADDED"
+label_settings = SubResource("LabelSettings_l7a3r")
 
 [node name="Options Label" type="Label" parent="Options/Panel"]
 layout_mode = 1
@@ -365,6 +395,15 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 29
 text = "Back"
 
+[node name="Devmode" type="Button" parent="Options/Panel"]
+layout_mode = 1
+offset_left = 704.0
+offset_top = 15.0
+offset_right = 779.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 29
+text = "~"
+
 [node name="SaveButton" type="Button" parent="Options/Panel"]
 layout_mode = 1
 anchors_preset = 7
@@ -382,6 +421,49 @@ theme_override_font_sizes/font_size = 29
 text = "Save"
 script = ExtResource("5_nivpb")
 
+[node name="Devmode" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(800, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -400.0
+offset_right = 400.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 400)
+
+[node name="Panel" type="Panel" parent="Devmode"]
+layout_mode = 2
+
+[node name="DevBackButton" type="Button" parent="Devmode/Panel"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 29
+text = "Back"
+
+[node name="Label" type="Label" parent="Devmode/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -11.5
+offset_right = 93.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You lost the game, bitch"
+label_settings = SubResource("LabelSettings_owwc5")
+
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
@@ -390,5 +472,9 @@ script = ExtResource("5_nivpb")
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="mouse_entered" from="Options/Panel/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Options/Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="Options/Panel/Devmode" to="." method="_on_devmode_mouse_entered"]
+[connection signal="pressed" from="Options/Panel/Devmode" to="." method="_on_devmode_pressed"]
 [connection signal="mouse_entered" from="Options/Panel/SaveButton" to="." method="_on_save_button_mouse_entered"]
 [connection signal="pressed" from="Options/Panel/SaveButton" to="Options/Panel/SaveButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="Devmode/Panel/DevBackButton" to="." method="_on_dev_back_button_mouse_entered"]
+[connection signal="pressed" from="Devmode/Panel/DevBackButton" to="." method="_on_dev_back_button_pressed"]
