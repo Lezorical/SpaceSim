@@ -169,6 +169,17 @@ label_settings = SubResource("LabelSettings_lfya7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SaveButton" type="Button" parent="Options Menu"]
+layout_mode = 2
+offset_left = 586.0
+offset_top = 913.0
+offset_right = 631.0
+offset_bottom = 944.0
+theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
+theme_override_font_sizes/font_size = 80
+text = "save"
+flat = true
+
 [node name="BackButton" type="VBoxContainer" parent="Options Menu"]
 layout_mode = 1
 anchors_preset = 2
@@ -305,6 +316,8 @@ label_settings = SubResource("LabelSettings_moy1g")
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="Main Menu/MainMenuButtons/QuitButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="Options Menu/SaveButton" to="." method="_on_save_button_mouse_entered"]
+[connection signal="pressed" from="Options Menu/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="mouse_entered" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="value_changed" from="Options Menu/Master Sound" to="Sound Manager" method="_on_master_sound_value_changed"]

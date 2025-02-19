@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0xirorrqab3n"]
+[gd_scene load_steps=9 format=3 uid="uid://d0xirorrqab3n"]
 
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="1_bolqb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="1_locyo"]
 [ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="3_kcn4b"]
 [ext_resource type="Texture2D" uid="uid://cqvh3q8c0avek" path="res://Images/mouseSensitivty.png" id="3_wrt4b"]
+[ext_resource type="Script" path="res://Scripts/pauseSaveButton.gd" id="5_nivpb"]
 
 [sub_resource type="GDScript" id="GDScript_lbioe"]
 script/source = "extends CanvasLayer
@@ -11,6 +12,8 @@ script/source = "extends CanvasLayer
 @onready var clickSound = $\"Sound Manager/ClickSound\"
 @onready var hoverSound = $\"Sound Manager/HoverSound\"
 @onready var optionsMenu = $Options
+
+var saveSettings = ConfigFile.new()
 
 var isPaused = false
 
@@ -53,8 +56,9 @@ func _on_quit_button_pressed() -> void:
 func _on_back_button_pressed() -> void:
 	clickSound.play()
 	optionsMenu.visible = false
-
-
+	
+func _on_save_button_pressed() -> void:
+	clickSound.play()
 
 #play hover sound
 func _on_resume_button_mouse_entered() -> void:
@@ -64,6 +68,8 @@ func _on_options_button_mouse_entered() -> void:
 func _on_quit_button_mouse_entered() -> void:
 	hoverSound.play()
 func _on_back_button_mouse_entered() -> void:
+	hoverSound.play()
+func _on_save_button_mouse_entered() -> void:
 	hoverSound.play()
 "
 
@@ -256,7 +262,7 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "100"
 
-[node name="Master Sound3" type="HSlider" parent="Options/Panel/Sound"]
+[node name="SFX Sound" type="HSlider" parent="Options/Panel/Sound"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
 anchors_preset = 5
@@ -271,7 +277,7 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
-[node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/Master Sound3"]
+[node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/SFX Sound"]
 offset_left = -86.0
 offset_top = -30.0
 offset_right = 1914.0
@@ -279,14 +285,14 @@ offset_bottom = 1970.0
 scale = Vector2(0.0355894, 0.0355894)
 texture = ExtResource("3_kcn4b")
 
-[node name="SFXLabel" type="Label" parent="Options/Panel/Sound/Master Sound3"]
+[node name="SFXLabel" type="Label" parent="Options/Panel/Sound/SFX Sound"]
 layout_mode = 1
 offset_top = -32.0
 offset_right = 63.0
 offset_bottom = -9.0
 text = "SFX"
 
-[node name="SoundLevel" type="Label" parent="Options/Panel/Sound/Master Sound3"]
+[node name="SoundLevel" type="Label" parent="Options/Panel/Sound/SFX Sound"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -355,6 +361,23 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 29
 text = "Back"
 
+[node name="SaveButton" type="Button" parent="Options/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.5
+offset_top = -100.0
+offset_right = 37.5
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 29
+text = "Save"
+script = ExtResource("5_nivpb")
+
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
@@ -363,3 +386,5 @@ text = "Back"
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="mouse_entered" from="Options/Panel/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Options/Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="Options/Panel/SaveButton" to="." method="_on_save_button_mouse_entered"]
+[connection signal="pressed" from="Options/Panel/SaveButton" to="Options/Panel/SaveButton" method="_on_pressed"]

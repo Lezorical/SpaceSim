@@ -3,6 +3,8 @@ extends Control
 var MainMenuCameraPosition : int = 0
 var OptionsMenuCameraPosition : int = 1920
 
+var configFile = ConfigFile.new()
+
 @onready var transistion_sound = $"Sound Manager/SwooshSound"
 @onready var hover_sound = $"Sound Manager/HoverSound"
 @onready var click_sound = $"Sound Manager/ClickSound"
@@ -38,6 +40,15 @@ func _on_back_button_pressed() -> void:
 	click_sound.play()
 	transistion_sound.play()
 	$CameraHolder.position.x = MainMenuCameraPosition
+#Save Button
+func _on_save_button_pressed() -> void:
+	click_sound.play()
+	
+	configFile.set_value("Master_Sound", "volume", $"Options Menu/Master Sound".value)
+	configFile.set_value("Music_Sound", "volume", $"Options Menu/Music Sound".value)
+	configFile.set_value("SFX_Sound", "volume", $"Options Menu/SFX Sound".value)
+	
+	configFile.save("res://settings.cfg")
 
 
 
@@ -52,4 +63,7 @@ func _on_quit_button_mouse_entered() -> void:
 	hover_sound.play()
 
 func _on_back_button_mouse_entered() -> void:
+	hover_sound.play()
+
+func _on_save_button_mouse_entered() -> void:
 	hover_sound.play()
