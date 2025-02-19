@@ -27,6 +27,7 @@ func ray_cast():
 
 
 func _input(event):
+	
 	var sensitivity = 0.005
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		rotate(Vector3.UP, -event.relative.x * sensitivity)

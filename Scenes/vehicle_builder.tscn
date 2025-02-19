@@ -75,6 +75,7 @@ text = "Vehicle Builder Version: Alpha V0.01"
 
 [node name="Main" type="Control" parent="GUI/Building Screen"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -136,7 +137,6 @@ text = "Quit to desktop"
 
 [node name="ItemSelectionPanel" type="Panel" parent="GUI/Building Screen/Main/ItemMenu"]
 custom_minimum_size = Vector2(450, 800)
-anchors_preset = -1
 offset_left = 1446.0
 offset_top = 136.0
 offset_right = 1896.0
