@@ -9,9 +9,26 @@ Version 1.0 will consist of the following
 1. very basic menu systems
 2. very basic building menu
 3. basic propulsion of ships
-4. basic character controller
+[complete] 4. basic character controller
 5. devmode for debugging
-6. an anviorment in which you "spawn" and can act as a first base
+[complete] 6. an anviorment in which you "spawn" and can act as a first base
+
+
+
+Plans for version 1.0
+  +Gui components
+    +Main menu
+      -Basic home page with Start, options and Quit
+      +An Options menu
+        -All Sound sliders
+        -Sensitivity Sliders
+     -resume button
+    +Pause Menu
+      
+
+
+
+
 
 Current Species count: 0
 
