@@ -16,8 +16,15 @@ Version 1.0 will consist of the following
 
 
 Plans for version 1.0
-  -Gui components
-    -
+  +Gui components
+    +Main menu
+      -Basic home page with Start, options and Quit
+      +An Options menu
+        -All Sound sliders
+        -Sensitivity Sliders
+     -resume button
+    +Pause Menu
+      
 
 
 
