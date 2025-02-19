@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0xirorrqab3n"]
+[gd_scene load_steps=10 format=3 uid="uid://d0xirorrqab3n"]
 
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="1_bolqb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="1_locyo"]
+[ext_resource type="Script" path="res://Scripts/load_manager.gd" id="1_nnvkl"]
 [ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="3_kcn4b"]
 [ext_resource type="Texture2D" uid="uid://cqvh3q8c0avek" path="res://Images/mouseSensitivty.png" id="3_wrt4b"]
 [ext_resource type="Script" path="res://Scripts/pauseSaveButton.gd" id="5_nivpb"]
@@ -81,6 +82,9 @@ font_size = 43
 
 [node name="Pause Menu" type="CanvasLayer"]
 script = SubResource("GDScript_lbioe")
+
+[node name="Load Manager" type="Node" parent="."]
+script = ExtResource("1_nnvkl")
 
 [node name="Sound Manager" type="Node" parent="."]
 
