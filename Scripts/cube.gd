@@ -8,20 +8,22 @@ extends MeshInstance3D
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
+	
 func _input(event):
 		
 	if camera.ray_cast() != null and Input.is_action_pressed("leftClick"):
+		
 		var mousepos = get_viewport().get_mouse_position()
 		var origin = camera.project_ray_origin(mousepos)
 		var end =camera.project_ray_normal(mousepos)
 		var depth= origin.distance_to(area.global_position)
 		var final_position= origin + end * depth
 		area.global_position=final_position
+		
 		
 #Move Object closer and further with scroll wheel
 	if event is InputEventMouseButton:

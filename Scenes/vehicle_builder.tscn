@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0i0l5kjf1ots"]
+[gd_scene load_steps=21 format=3 uid="uid://0i0l5kjf1ots"]
 
 [ext_resource type="Script" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
 [ext_resource type="Script" path="res://Scripts/item_selector.gd" id="2_b1j14"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="2_jb2sb"]
 [ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://Images/SettingsIcon.png" id="2_ywmqw"]
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="3_lll6w"]
+[ext_resource type="Texture2D" uid="uid://dwvwyk8cg5yy4" path="res://Images/centerimage.png" id="7_1y75d"]
+[ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://Images/shipsymbol.png" id="8_r5l6o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgjx6"]
 
@@ -19,6 +21,9 @@ sky = SubResource("Sky_8btpu")
 [sub_resource type="LabelSettings" id="LabelSettings_lcu3a"]
 font_size = 50
 
+[sub_resource type="LabelSettings" id="LabelSettings_cft7m"]
+font_size = 21
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fmw4"]
 transparency = 1
 albedo_color = Color(0.32019, 0.773903, 0.83459, 0.168627)
@@ -29,6 +34,62 @@ size = Vector3(30, 0.2, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x0kql"]
 size = Vector3(30, 0.2, 30)
+
+[sub_resource type="Animation" id="Animation_iescd"]
+resource_name = "spin"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_w0ohl"]
+resource_name = "new_animation"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 6.28319, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_obvf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ijvk1"]
+_data = {
+"RESET": SubResource("Animation_obvf4"),
+"new_animation": SubResource("Animation_w0ohl"),
+"spin": SubResource("Animation_iescd")
+}
 
 [node name="Vehicle Builder" type="Node"]
 
@@ -59,17 +120,12 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.000
 [node name="Camera Holder" type="Node" parent="."]
 
 [node name="Camera" type="Camera3D" parent="Camera Holder"]
-transform = Transform3D(0.707107, -0.353553, 0.612373, 0, 0.866026, 0.499999, -0.707107, -0.353553, 0.612373, 15, 15, 15)
+transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, -11.9067, 15, 15)
 current = true
 far = 200000.0
 script = ExtResource("2_gspcb")
 
 [node name="GUI" type="Node" parent="."]
-
-[node name="Vehicle Builder Version" type="Label" parent="GUI"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Vehicle Builder Version: Alpha V0.01"
 
 [node name="Building Screen" type="Node" parent="GUI"]
 
@@ -142,15 +198,41 @@ offset_top = 136.0
 offset_right = 1896.0
 offset_bottom = 936.0
 
-[node name="ItemList" type="ItemList" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
-custom_minimum_size = Vector2(450, 650)
+[node name="SpawnButton" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-allow_reselect = true
-item_count = 1
-item_0/text = "Cube"
-item_0/selectable = false
+offset_left = 28.0
+offset_top = 31.0
+offset_right = 76.0
+offset_bottom = 62.0
+text = "Cube"
+
+[node name="Grid Size" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+
+[node name="Grid Size" type="Label" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size"]
+offset_left = 1461.0
+offset_top = 885.0
+offset_right = 1549.0
+offset_bottom = 915.0
+text = "Grid Size"
+label_settings = SubResource("LabelSettings_cft7m")
+
+[node name="half" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size"]
+offset_left = 1562.0
+offset_top = 882.0
+offset_right = 1605.0
+offset_bottom = 925.0
+pivot_offset = Vector2(21, 21)
+theme_override_font_sizes/font_size = 25
+text = "0.5"
+
+[node name="Full" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size"]
+offset_left = 1610.0
+offset_top = 882.0
+offset_right = 1653.0
+offset_bottom = 925.0
+pivot_offset = Vector2(21, 21)
+theme_override_font_sizes/font_size = 25
+text = "1"
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -160,7 +242,41 @@ mesh = SubResource("BoxMesh_mtopj")
 [node name="Collision" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_x0kql")
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="Decorations" type="Node" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+texture = ExtResource("7_1y75d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/Sprite3D"]
+libraries = {
+"": SubResource("AnimationLibrary_ijvk1")
+}
+autoplay = "new_animation"
+
+[node name="Label3D" type="Label3D" parent="Decorations"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 14.232, -0.0329332, 0.0156827)
+text = "Bow"
+font_size = 100
+
+[node name="Label3D2" type="Label3D" parent="Decorations"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -14.1467, 0, 0)
+text = "Stern"
+font_size = 100
+
+[node name="Label3D3" type="Label3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -14.0531)
+text = "Port"
+font_size = 100
+
+[node name="Label3D4" type="Label3D" parent="Decorations"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 14.2564)
+text = "Port"
+font_size = 100
+
+[node name="Sprite3D2" type="Sprite3D" parent="Decorations"]
+transform = Transform3D(-4.37114e-07, 10, -4.37114e-07, 0, -4.37114e-07, -10, -10, -4.37114e-07, 1.91069e-14, 0.0745869, 0.0837727, 0.0698032)
+texture = ExtResource("8_r5l6o")
 
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Settings Button" to="Game Manager/Button Actions" method="_on_settings_button_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_mouse_entered"]
@@ -171,4 +287,4 @@ shape = SubResource("BoxShape3D_x0kql")
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="Game Manager/Button Actions" method="_on_no_button_pressed"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_pressed"]
-[connection signal="item_activated" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/ItemList" to="Game Manager/Item Selector" method="_on_item_list_item_activated"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/SpawnButton" to="Camera Holder/Camera" method="_on_spawn_button_pressed"]
