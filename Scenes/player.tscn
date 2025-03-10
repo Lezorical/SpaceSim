@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://ce217mf1p608r"]
 
-[ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_fya8s"]
-[ext_resource type="Script" path="res://Scripts/ray_cast_3d.gd" id="2_ss5jm"]
-[ext_resource type="Script" path="res://Scripts/FPS Counter.gd" id="3_xnbl5"]
-[ext_resource type="Script" path="res://Scripts/Speed.gd" id="4_tep6y"]
-[ext_resource type="Script" path="res://Scripts/timescale.gd" id="5_sq07p"]
+[ext_resource type="Script" uid="uid://dikvex1da764f" path="res://Scripts/CharacterMovement.gd" id="1_fya8s"]
+[ext_resource type="Script" uid="uid://ciy0chxixbmb2" path="res://Scripts/ray_cast_3d.gd" id="2_ss5jm"]
+[ext_resource type="Script" uid="uid://cyoap1hcwryc6" path="res://Scripts/FPS Counter.gd" id="3_xnbl5"]
+[ext_resource type="Script" uid="uid://bsuhrah5bv1yk" path="res://Scripts/Speed.gd" id="4_tep6y"]
+[ext_resource type="Script" uid="uid://c5f357nriwh26" path="res://Scripts/timescale.gd" id="5_sq07p"]
 [ext_resource type="Texture2D" uid="uid://dvupn6lwbxron" path="res://Images/select.png" id="6_e5e2f"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4oqcb"]

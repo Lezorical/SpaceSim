@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4dteludr3m0s"]
+[gd_scene load_steps=5 format=3 uid="uid://d4dteludr3m0s"]
+
+[ext_resource type="Texture2D" uid="uid://b2368w2p0avqw" path="res://Images/Protoype Textures/kenney_prototype_textures/dark/texture_08.png" id="1_kyh1g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jusvy"]
 size = Vector3(0.5, 0.5, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6oedp"]
+albedo_texture = ExtResource("1_kyh1g")
+
 [sub_resource type="BoxMesh" id="BoxMesh_wcqx8"]
+material = SubResource("StandardMaterial3D_6oedp")
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Cube 0_5" type="Area3D" groups=["block"]]

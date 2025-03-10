@@ -1,4 +1,18 @@
-[gd_scene format=3 uid="uid://c82s6hibsdtuf"]
+[gd_scene load_steps=7 format=3 uid="uid://c82s6hibsdtuf"]
+
+[ext_resource type="AudioStream" uid="uid://doyvr1c2cq3ea" path="res://Game Music/backgroundmusic1.mp3" id="1_jd1xv"]
+[ext_resource type="AudioStream" uid="uid://uwsyacvwgr7o" path="res://Game Music/backgroundmusic2.mp3" id="2_7iu72"]
+[ext_resource type="AudioStream" uid="uid://dq44mgkr3w5e7" path="res://Game Music/Outer World.mp3" id="3_kjjid"]
+[ext_resource type="AudioStream" uid="uid://bru0e8bwk7as0" path="res://Game Music/Sky High.mp3" id="4_tq6aw"]
+[ext_resource type="Script" uid="uid://cnnol1e7b6q4i" path="res://Scripts/save_and_load_options.gd" id="5_l6k16"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_a1sfl"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("1_jd1xv")
+stream_1 = ExtResource("2_7iu72")
+stream_2 = ExtResource("3_kjjid")
+stream_3 = ExtResource("4_tq6aw")
 
 [node name="Game Manager" type="Node"]
 
@@ -12,4 +26,17 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Node" type="Node" parent="."]
+[node name="Sound Manager" type="Node" parent="."]
+
+[node name="Music" type="Node" parent="Sound Manager"]
+
+[node name="Background Music" type="AudioStreamPlayer" parent="Sound Manager/Music"]
+stream = SubResource("AudioStreamPlaylist_a1sfl")
+volume_db = -15.0
+autoplay = true
+bus = &"MainMenuMusic"
+
+[node name="SaveLoad" type="Node" parent="."]
+
+[node name="Save and load options" type="Node" parent="SaveLoad"]
+script = ExtResource("5_l6k16")

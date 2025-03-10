@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://b55w3fi6ujxe3"]
+[gd_scene load_steps=17 format=3 uid="uid://b55w3fi6ujxe3"]
 
-[ext_resource type="Script" path="res://Menus/Scripts/MainMenuController.gd" id="1_k3e35"]
-[ext_resource type="Script" path="res://Menus/Scripts/main_menu_sound_manager.gd" id="2_n0sxy"]
-[ext_resource type="AudioStream" uid="uid://uwsyacvwgr7o" path="res://Game Music/backgroundmusic2.mp3" id="3_gtr6m"]
+[ext_resource type="Script" uid="uid://2di5vxno2r63" path="res://Menus/Scripts/MainMenuController.gd" id="1_k3e35"]
+[ext_resource type="Script" uid="uid://b8jf004lj4lbt" path="res://Menus/Scripts/main_menu_sound_manager.gd" id="2_n0sxy"]
 [ext_resource type="AudioStream" uid="uid://bdydhwhstq8pa" path="res://Sounds/swooshsound.mp3" id="5_lt3ki"]
-[ext_resource type="AudioStream" uid="uid://dq44mgkr3w5e7" path="res://Game Music/Outer World.mp3" id="5_ymjbt"]
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="6_srmur"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="7_d38xc"]
 [ext_resource type="Texture2D" uid="uid://v8hyqjv24xf6" path="res://Menus/Images/pc1.jpg" id="8_0kq35"]
@@ -27,6 +25,46 @@ font_size = 22
 [sub_resource type="LabelSettings" id="LabelSettings_moy1g"]
 font_size = 29
 
+[sub_resource type="BoxMesh" id="BoxMesh_demcr"]
+
+[sub_resource type="Animation" id="Animation_1g281"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.785398, 6.28319, 0.785398)]
+}
+
+[sub_resource type="Animation" id="Animation_2lsf4"]
+resource_name = "spin"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0.785398), Vector3(0.785398, 6.28319, 0.785398)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3s758"]
+_data = {
+&"RESET": SubResource("Animation_1g281"),
+&"spin": SubResource("Animation_2lsf4")
+}
+
 [node name="Menus" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -41,21 +79,6 @@ script = ExtResource("2_n0sxy")
 master_bus = "Master"
 main_menu_bus = "MainMenuMusic"
 sfx_bus = "sfx"
-
-[node name="backgroundMusic1" type="AudioStreamPlayer" parent="Sound Manager"]
-stream = ExtResource("3_gtr6m")
-volume_db = -15.0
-bus = &"MainMenuMusic"
-
-[node name="backgroundMusic2" type="AudioStreamPlayer" parent="Sound Manager"]
-stream = ExtResource("3_gtr6m")
-volume_db = -15.0
-bus = &"MainMenuMusic"
-
-[node name="backgroundMusic3" type="AudioStreamPlayer" parent="Sound Manager"]
-stream = ExtResource("5_ymjbt")
-volume_db = -16.0
-bus = &"MainMenuMusic"
 
 [node name="SwooshSound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("5_lt3ki")
@@ -169,17 +192,6 @@ label_settings = SubResource("LabelSettings_lfya7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SaveButton" type="Button" parent="Options Menu"]
-layout_mode = 2
-offset_left = 586.0
-offset_top = 913.0
-offset_right = 631.0
-offset_bottom = 944.0
-theme_override_colors/font_hover_color = Color(0.403922, 0.0588235, 0.25098, 1)
-theme_override_font_sizes/font_size = 80
-text = "save"
-flat = true
-
 [node name="BackButton" type="VBoxContainer" parent="Options Menu"]
 layout_mode = 1
 anchors_preset = 2
@@ -217,7 +229,7 @@ offset_bottom = 56.9999
 text = "MASTER SOUND"
 label_settings = SubResource("LabelSettings_qx8qx")
 
-[node name="Sound Icon" type="TextureRect" parent="Options Menu/Master Sound"]
+[node name="MasterSound Icon" type="TextureRect" parent="Options Menu/Master Sound"]
 layout_mode = 0
 offset_left = -125.0
 offset_top = 57.0
@@ -254,7 +266,7 @@ offset_bottom = 56.9999
 text = "MUSIC SOUND"
 label_settings = SubResource("LabelSettings_qx8qx")
 
-[node name="Sound Icon" type="TextureRect" parent="Options Menu/Music Sound"]
+[node name="MusicSound Icon" type="TextureRect" parent="Options Menu/Music Sound"]
 layout_mode = 0
 offset_left = -125.0
 offset_top = 57.0
@@ -291,7 +303,7 @@ offset_bottom = 56.9999
 text = "SFX SOUND"
 label_settings = SubResource("LabelSettings_qx8qx")
 
-[node name="Sound Icon" type="TextureRect" parent="Options Menu/SFX Sound"]
+[node name="SFXSound Icon" type="TextureRect" parent="Options Menu/SFX Sound"]
 layout_mode = 0
 offset_left = -125.0
 offset_top = 57.0
@@ -309,6 +321,36 @@ offset_bottom = 117.0
 text = "100"
 label_settings = SubResource("LabelSettings_moy1g")
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 1058.0
+offset_top = 331.0
+offset_right = 1098.0
+offset_bottom = 371.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_cull_mask = 4294967294
+size = Vector2i(500, 500)
+render_target_update_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.707107, -0.707107, 1.23634e-07, 0.5, 0.5, -0.707107, 0.5, 0.5, 0.707107, 0, 0, 0)
+mesh = SubResource("BoxMesh_demcr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/MeshInstance3D"]
+libraries = {
+"": SubResource("AnimationLibrary_3s758")
+}
+autoplay = "spin"
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.73373)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.710443, 0.703754, 0, -0.703754, 0.710443, 0.394856, 2.41116, 2.56366)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/OptionsButton" to="." method="_on_options_button_mouse_entered"]
@@ -316,8 +358,6 @@ label_settings = SubResource("LabelSettings_moy1g")
 [connection signal="mouse_entered" from="Main Menu/MainMenuButtons/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Main Menu/MainMenuButtons/QuitButton" to="Main Menu/MainMenuButtons/QuitButton" method="_on_pressed"]
-[connection signal="mouse_entered" from="Options Menu/SaveButton" to="." method="_on_save_button_mouse_entered"]
-[connection signal="pressed" from="Options Menu/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="mouse_entered" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Options Menu/BackButton/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="value_changed" from="Options Menu/Master Sound" to="Sound Manager" method="_on_master_sound_value_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cbutlcdf6151o"]
+[gd_scene load_steps=29 format=3 uid="uid://cbutlcdf6151o"]
 
 [ext_resource type="Texture2D" uid="uid://bxijtrtwxi4yq" path="res://Images/1000_F_364910470_DCjyTv7AlFX0or7TGEcJWkz7JDLnCE5G.jpg" id="2_3ty1w"]
 [ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://Images/93034.jpg" id="2_crfub"]
@@ -23,6 +23,7 @@ sky = SubResource("Sky_gtd3c")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc6bi"]
 shading_mode = 0
 albedo_color = Color(4, 4, 4, 1)
+grow_amount = 1.16
 
 [sub_resource type="SphereMesh" id="SphereMesh_5ffre"]
 material = SubResource("StandardMaterial3D_jc6bi")
@@ -75,8 +76,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ohxld"]
 _data = {
-"RESET": SubResource("Animation_d7f5y"),
-"rotate": SubResource("Animation_4ejhu")
+&"RESET": SubResource("Animation_d7f5y"),
+&"rotate": SubResource("Animation_4ejhu")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qdv13"]
@@ -85,8 +86,6 @@ albedo_texture = ExtResource("3_fx17k")
 [sub_resource type="BoxMesh" id="BoxMesh_2lv2r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sep1m"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_03pq6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wycf"]
 albedo_texture = ExtResource("5_uudtx")
@@ -112,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 0.849782, 0.527134, 0, -0.527134, 0.849782, 
 visible = false
 
 [node name="Sun" type="MeshInstance3D" parent="."]
-transform = Transform3D(40.9776, 0, 0, 0, 40.9776, 0, 0, 0, 40.9776, 0, 1282.49, 177049)
+transform = Transform3D(40.9776, 0, 0, 0, 40.9776, 0, 0, 0, 40.9776, 0, 2980.28, 100732)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_5ffre")
 skeleton = NodePath("DirectionalLight")
@@ -123,13 +122,14 @@ shadow_enabled = true
 
 [node name="Planet" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 85.2269)
+visible = false
 material_override = SubResource("StandardMaterial3D_m6bwr")
 mesh = SubResource("SphereMesh_e26ns")
 surface_material_override/0 = SubResource("StandardMaterial3D_wjfy4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Planet"]
 libraries = {
-"": SubResource("AnimationLibrary_ohxld")
+&"": SubResource("AnimationLibrary_ohxld")
 }
 autoplay = "rotate"
 
@@ -149,19 +149,6 @@ skeleton = NodePath("../Collision")
 
 [node name="Collision" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_sep1m")
-
-[node name="Platform2" type="StaticBody3D" parent="."]
-transform = Transform3D(83.2079, 0, 0, 0, 1, 0, 0, 0, 55.1538, 0, 0, 92823.4)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2"]
-transform = Transform3D(0.0784375, 0, 0, 0, 1, 0, 0, 0, 0.717372, 0.103368, 0, -0.856575)
-shape = SubResource("BoxShape3D_03pq6")
-
-[node name="Mesh2" type="MeshInstance3D" parent="Platform2"]
-transform = Transform3D(0.0784375, 0, 0, 0, 1, 0, 0, 0, 0.717372, 0.103368, 0, -0.856575)
-material_override = SubResource("StandardMaterial3D_qdv13")
-mesh = SubResource("BoxMesh_2lv2r")
-skeleton = NodePath("")
 
 [node name="Buildermachine" type="StaticBody3D" parent="." groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1761, 0.499998, 92797.8)

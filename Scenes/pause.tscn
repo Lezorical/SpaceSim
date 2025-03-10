@@ -2,10 +2,10 @@
 
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="1_bolqb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="1_locyo"]
-[ext_resource type="Script" path="res://Scripts/load_manager.gd" id="1_nnvkl"]
+[ext_resource type="Script" uid="uid://dw2ge3kbpjvn6" path="res://Scripts/load_manager.gd" id="1_nnvkl"]
 [ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="3_kcn4b"]
 [ext_resource type="Texture2D" uid="uid://cqvh3q8c0avek" path="res://Images/mouseSensitivty.png" id="3_wrt4b"]
-[ext_resource type="Script" path="res://Scripts/pauseSaveButton.gd" id="5_nivpb"]
+[ext_resource type="Script" uid="uid://c42xnud5ft786" path="res://Scripts/pauseSaveButton.gd" id="5_nivpb"]
 
 [sub_resource type="GDScript" id="GDScript_lbioe"]
 script/source = "extends CanvasLayer
@@ -222,6 +222,7 @@ step = 0.001
 value = 1.0
 
 [node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/Master Sound"]
+layout_mode = 0
 offset_left = -86.0
 offset_top = -30.0
 offset_right = 1914.0
@@ -267,6 +268,7 @@ step = 0.001
 value = 1.0
 
 [node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/Music Sound"]
+layout_mode = 0
 offset_left = -86.0
 offset_top = -30.0
 offset_right = 1914.0
@@ -312,6 +314,7 @@ step = 0.001
 value = 1.0
 
 [node name="SoundIcon" type="TextureRect" parent="Options/Panel/Sound/SFX Sound"]
+layout_mode = 0
 offset_left = -86.0
 offset_top = -30.0
 offset_right = 1914.0
@@ -357,6 +360,7 @@ step = 0.001
 value = 0.5
 
 [node name="SoundIcon" type="TextureRect" parent="Options/Panel/Look Sensitivity"]
+layout_mode = 0
 offset_left = -86.0
 offset_top = -30.0
 offset_right = 1914.0
@@ -441,6 +445,7 @@ pivot_offset = Vector2(400, 400)
 layout_mode = 2
 
 [node name="DevBackButton" type="Button" parent="Devmode/Panel"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 90.0

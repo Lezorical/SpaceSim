@@ -1,12 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://0i0l5kjf1ots"]
+[gd_scene load_steps=32 format=3 uid="uid://0i0l5kjf1ots"]
 
-[ext_resource type="Script" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
-[ext_resource type="Script" path="res://Scripts/item_selector.gd" id="2_b1j14"]
-[ext_resource type="Script" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
+[ext_resource type="Script" uid="uid://hmh8qnigh3f2" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
+[ext_resource type="Script" uid="uid://cts6iyoerhsgx" path="res://Scripts/item_selector.gd" id="2_b1j14"]
+[ext_resource type="Script" uid="uid://vtsapoijdtbj" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="2_jb2sb"]
 [ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://Images/SettingsIcon.png" id="2_ywmqw"]
+[ext_resource type="Script" uid="uid://cvdawnm81qhxn" path="res://Scenes/mouse_curser.gd" id="3_hfgru"]
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="3_lll6w"]
+[ext_resource type="Script" uid="uid://dm0pn658u1l6j" path="res://Scenes/spawn_vehicle.gd" id="4_323cd"]
+[ext_resource type="Script" uid="uid://dqckcqbf8nwg8" path="res://Scenes/grid_settings.gd" id="5_736lr"]
+[ext_resource type="Script" uid="uid://c3qdjtvsflvs" path="res://Scenes/spawn_block.gd" id="5_am6qb"]
+[ext_resource type="Script" uid="uid://c7dthg8laafxe" path="res://Scenes/save_craft.gd" id="5_cj4pt"]
+[ext_resource type="Script" uid="uid://bxyig0n81u1nj" path="res://Scripts/fps.gd" id="6_4c5h4"]
+[ext_resource type="Texture2D" uid="uid://i8hbobsvpp7" path="res://Images/X.png" id="6_v7mb0"]
 [ext_resource type="Texture2D" uid="uid://dwvwyk8cg5yy4" path="res://Images/centerimage.png" id="7_1y75d"]
+[ext_resource type="Texture2D" uid="uid://dfuauixm783h3" path="res://Images/mouse-cursor.png" id="7_n2nr7"]
+[ext_resource type="Script" uid="uid://4m33nptw8iel" path="res://Scenes/move_block.gd" id="7_x467w"]
+[ext_resource type="Texture2D" uid="uid://ch34rt1xfdvrv" path="res://Images/computer-keyboard.png" id="8_gia21"]
 [ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://Images/shipsymbol.png" id="8_r5l6o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgjx6"]
@@ -18,11 +28,17 @@ sky_material = SubResource("ProceduralSkyMaterial_sgjx6")
 background_mode = 2
 sky = SubResource("Sky_8btpu")
 
+[sub_resource type="LabelSettings" id="LabelSettings_g6ina"]
+font_size = 23
+
 [sub_resource type="LabelSettings" id="LabelSettings_lcu3a"]
 font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_cft7m"]
 font_size = 21
+
+[sub_resource type="LabelSettings" id="LabelSettings_egbi0"]
+font_size = 24
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fmw4"]
 transparency = 1
@@ -32,13 +48,8 @@ albedo_color = Color(0.32019, 0.773903, 0.83459, 0.168627)
 material = SubResource("StandardMaterial3D_6fmw4")
 size = Vector3(30, 0.2, 30)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_x0kql"]
-size = Vector3(30, 0.2, 30)
-
-[sub_resource type="Animation" id="Animation_iescd"]
-resource_name = "spin"
-length = 30.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_obvf4"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,10 +57,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_w0ohl"]
@@ -69,8 +80,10 @@ tracks/0/keys = {
 "values": [Vector3(0, 6.28319, 0), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_obvf4"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_iescd"]
+resource_name = "spin"
+length = 30.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -78,17 +91,17 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": []
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ijvk1"]
 _data = {
-"RESET": SubResource("Animation_obvf4"),
-"new_animation": SubResource("Animation_w0ohl"),
-"spin": SubResource("Animation_iescd")
+&"RESET": SubResource("Animation_obvf4"),
+&"new_animation": SubResource("Animation_w0ohl"),
+&"spin": SubResource("Animation_iescd")
 }
 
 [node name="Vehicle Builder" type="Node"]
@@ -100,6 +113,32 @@ script = ExtResource("1_gy6cq")
 
 [node name="Item Selector" type="Node" parent="Game Manager"]
 script = ExtResource("2_b1j14")
+
+[node name="Set Mouse mode" type="Node" parent="Game Manager"]
+script = ExtResource("3_hfgru")
+
+[node name="Grid Settings" type="Node" parent="Game Manager"]
+script = ExtResource("5_736lr")
+
+[node name="Spawn Vehicle" type="Node" parent="Game Manager"]
+script = ExtResource("4_323cd")
+
+[node name="Blocks" type="Node" parent="Game Manager"]
+
+[node name="Move Block" type="Node" parent="Game Manager/Blocks" node_paths=PackedStringArray("CameraReference")]
+script = ExtResource("7_x467w")
+CameraReference = NodePath("../../../Camera Holder/Camera")
+
+[node name="Spawn Block" type="Node" parent="Game Manager/Blocks" node_paths=PackedStringArray("spawnPath")]
+script = ExtResource("5_am6qb")
+spawnPath = NodePath("../../../SceneBlocks")
+
+[node name="Rotate Block" type="Node" parent="Game Manager/Blocks"]
+
+[node name="Block Tracker" type="Node" parent="Game Manager/Blocks"]
+
+[node name="Save Craft" type="Node" parent="Game Manager"]
+script = ExtResource("5_cj4pt")
 
 [node name="Sound Manager" type="Node" parent="."]
 
@@ -127,13 +166,64 @@ script = ExtResource("2_gspcb")
 
 [node name="GUI" type="Node" parent="."]
 
+[node name="FPS" type="Label" parent="GUI"]
+offset_right = 51.0
+offset_bottom = 32.0
+text = "FPS: null"
+label_settings = SubResource("LabelSettings_g6ina")
+script = ExtResource("6_4c5h4")
+
 [node name="Building Screen" type="Node" parent="GUI"]
+
+[node name="X7" type="Node" parent="GUI/Building Screen"]
+
+[node name="X" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1631, 903)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
+
+[node name="X2" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1713, 848)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
+
+[node name="X3" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1707, 906)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
+
+[node name="X4" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1800, 906)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
+
+[node name="X5" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1655, 849)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
+
+[node name="X6" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1583, 905)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
+
+[node name="X7" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1494, 790)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
+
+[node name="X8" type="Sprite2D" parent="GUI/Building Screen/X7"]
+position = Vector2(1883, 37)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_v7mb0")
 
 [node name="Main" type="Control" parent="GUI/Building Screen"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Settings Button" type="Button" parent="GUI/Building Screen/Main"]
 layout_mode = 0
@@ -176,16 +266,19 @@ vertical_alignment = 1
 
 [node name="Yes Button" type="Button" parent="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt"]
 layout_mode = 2
+tooltip_text = "get me tf outta here boy"
 theme_override_font_sizes/font_size = 35
 text = "Yes"
 
 [node name="No Button" type="Button" parent="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt"]
 layout_mode = 2
+tooltip_text = "im a pussy boy who cant decide wether i want to leave or not. why tf would my dumbass even click the main menu button? im retarded"
 theme_override_font_sizes/font_size = 35
 text = "No"
 
 [node name="Quit Button" type="Button" parent="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt"]
 layout_mode = 2
+tooltip_text = "tf you think? bitch, im in control. get me the fuck out outa here"
 theme_override_font_sizes/font_size = 35
 text = "Quit to desktop"
 
@@ -198,13 +291,40 @@ offset_top = 136.0
 offset_right = 1896.0
 offset_bottom = 936.0
 
-[node name="SpawnButton" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+[node name="HalfBlock" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 31.0
 offset_right = 76.0
 offset_bottom = 62.0
 text = "Cube"
+
+[node name="OriginCube" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 31.0
+offset_right = 142.0
+offset_bottom = 62.0
+text = "*Origin Cube
+"
+
+[node name="Save_Load" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+
+[node name="Save" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load"]
+offset_left = 1670.0
+offset_top = 879.0
+offset_right = 1745.0
+offset_bottom = 929.0
+theme_override_font_sizes/font_size = 25
+text = "Save"
+
+[node name="Load" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load"]
+offset_left = 1763.0
+offset_top = 879.0
+offset_right = 1838.0
+offset_bottom = 929.0
+theme_override_font_sizes/font_size = 25
+text = "Load"
 
 [node name="Grid Size" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
 
@@ -234,13 +354,46 @@ pivot_offset = Vector2(21, 21)
 theme_override_font_sizes/font_size = 25
 text = "1"
 
+[node name="Building Node" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+
+[node name="Placement Mode" type="Label" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Building Node"]
+offset_left = 1457.0
+offset_top = 838.0
+offset_right = 1651.0
+offset_bottom = 872.0
+text = "Building Mode"
+label_settings = SubResource("LabelSettings_egbi0")
+
+[node name="Button" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Building Node"]
+offset_left = 1631.0
+offset_top = 825.0
+offset_right = 1681.0
+offset_bottom = 875.0
+icon = ExtResource("7_n2nr7")
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Building Node"]
+offset_left = 1689.0
+offset_top = 824.0
+offset_right = 1739.0
+offset_bottom = 874.0
+icon = ExtResource("8_gia21")
+icon_alignment = 1
+
+[node name="Spawn Vehicle" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+
+[node name="Spawn" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Spawn Vehicle"]
+offset_left = 1457.0
+offset_top = 769.0
+offset_right = 1532.0
+offset_bottom = 807.0
+theme_override_font_sizes/font_size = 21
+text = "Spawn"
+
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_mtopj")
-
-[node name="Collision" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_x0kql")
 
 [node name="Decorations" type="Node" parent="."]
 
@@ -250,7 +403,7 @@ texture = ExtResource("7_1y75d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/Sprite3D"]
 libraries = {
-"": SubResource("AnimationLibrary_ijvk1")
+&"": SubResource("AnimationLibrary_ijvk1")
 }
 autoplay = "new_animation"
 
@@ -278,6 +431,8 @@ font_size = 100
 transform = Transform3D(-4.37114e-07, 10, -4.37114e-07, 0, -4.37114e-07, -10, -10, -4.37114e-07, 1.91069e-14, 0.0745869, 0.0837727, 0.0698032)
 texture = ExtResource("8_r5l6o")
 
+[node name="SceneBlocks" type="Node" parent="."]
+
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Settings Button" to="Game Manager/Button Actions" method="_on_settings_button_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_mouse_entered"]
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_pressed"]
@@ -287,4 +442,7 @@ texture = ExtResource("8_r5l6o")
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/No Button" to="Game Manager/Button Actions" method="_on_no_button_pressed"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/SpawnButton" to="Camera Holder/Camera" method="_on_spawn_button_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/HalfBlock" to="Game Manager/Blocks/Spawn Block" method="_on_spawn_button_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/OriginCube" to="Game Manager/Blocks/Spawn Block" method="_on_origin_cube_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Save" to="Game Manager/Save Craft" method="_on_save_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Spawn Vehicle/Spawn" to="Game Manager/Spawn Vehicle" method="_on_spawn_pressed"]

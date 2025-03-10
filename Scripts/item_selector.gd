@@ -1,15 +1,11 @@
 extends Node
 
 @onready var camera = $"../../Camera Holder/Camera"
-@onready var cube_scene = preload("res://assets/Vehicle Builder/Blocks/cube_0_5x0_5.tscn")
+@onready var cube_scene = preload("uid://d4dteludr3m0s")
 
 
 func _ready() -> void:
 	pass
-
-func _process(delta: float) -> void:
-	pass
-
 
 func _on_item_list_item_activated(index: int) -> void:
 	var instance = cube_scene.instantiate()

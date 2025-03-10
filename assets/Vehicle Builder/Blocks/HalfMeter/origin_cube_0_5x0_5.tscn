@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfbagtif6a1hd"]
+
+[ext_resource type="Texture2D" uid="uid://dlop7q83cphcp" path="res://Images/Protoype Textures/kenney_prototype_textures/orange/texture_06.png" id="1_hfbqc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jusvy"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wcqx8"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jds1p"]
+albedo_texture = ExtResource("1_hfbqc")
+
+[node name="Cube 0_5" type="Area3D" groups=["block"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0128427, 0, 0)
+shape = SubResource("BoxShape3D_jusvy")
+
+[node name="cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wcqx8")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_jds1p")

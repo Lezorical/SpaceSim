@@ -15,9 +15,6 @@ func _ready() -> void:
 	$CameraHolder/MainMenuCamera.position_smoothing_enabled
 
 
-func _process(delta: float) -> void:
-	pass
-
 #Start button Actions
 func _on_start_button_pressed() -> void:
 	click_sound.play()
