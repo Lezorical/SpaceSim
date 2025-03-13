@@ -7,12 +7,12 @@ extends Node
 
 func _on_spawn_button_pressed() -> void:
 	var instance = halfBlock.instantiate()
-	instance.name = str("halfBlock")
+	instance.name = str("halfBlock", " ", instance.get_instance_id())
 	spawnPath.add_child(instance)
 	instance.global_position = Vector3(0,0,0)
 	
 func _on_origin_cube_pressed() -> void:
 	var instance = originBlock.instantiate()
-	instance.name = str("originBlock")
+	instance.name = str("originBlock", " ", instance.get_instance_id())
 	spawnPath.add_child(instance)
 	instance.global_position = Vector3(0,0,0)

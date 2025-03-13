@@ -1,0 +1,14 @@
+[halfBlock 61639493322]
+
+BlockType="res://assets/Vehicle Builder/Blocks/HalfMeter/cube_0_5x0_5.tscn"
+BlockPosition=Vector3(10, 10.5, 5)
+
+[halfBlock 106468214495]
+
+BlockType="res://assets/Vehicle Builder/Blocks/HalfMeter/cube_0_5x0_5.tscn"
+BlockPosition=Vector3(7.5, 7.5, 9)
+
+[halfBlock 146699978546]
+
+BlockType="res://assets/Vehicle Builder/Blocks/HalfMeter/cube_0_5x0_5.tscn"
+BlockPosition=Vector3(9, 5, 11)

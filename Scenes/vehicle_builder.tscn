@@ -1,9 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://0i0l5kjf1ots"]
+[gd_scene load_steps=34 format=3 uid="uid://0i0l5kjf1ots"]
 
+[ext_resource type="Script" uid="uid://b1ujc7cgsnqpt" path="res://Scenes/clear_slate.gd" id="1_736lr"]
 [ext_resource type="Script" uid="uid://hmh8qnigh3f2" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
 [ext_resource type="Script" uid="uid://cts6iyoerhsgx" path="res://Scripts/item_selector.gd" id="2_b1j14"]
 [ext_resource type="Script" uid="uid://vtsapoijdtbj" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="2_jb2sb"]
+[ext_resource type="Script" uid="uid://5mh44asbamia" path="res://Scenes/load_craft.gd" id="2_ri8uo"]
 [ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://Images/SettingsIcon.png" id="2_ywmqw"]
 [ext_resource type="Script" uid="uid://cvdawnm81qhxn" path="res://Scenes/mouse_curser.gd" id="3_hfgru"]
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="3_lll6w"]
@@ -108,6 +110,15 @@ _data = {
 
 [node name="Game Manager" type="Node" parent="."]
 
+[node name="Clear Slate" type="Node" parent="Game Manager"]
+script = ExtResource("1_736lr")
+
+[node name="Save Craft" type="Node" parent="Game Manager"]
+script = ExtResource("5_cj4pt")
+
+[node name="Load Craft" type="Node" parent="Game Manager"]
+script = ExtResource("2_ri8uo")
+
 [node name="Button Actions" type="Node" parent="Game Manager"]
 script = ExtResource("1_gy6cq")
 
@@ -136,9 +147,6 @@ spawnPath = NodePath("../../../SceneBlocks")
 [node name="Rotate Block" type="Node" parent="Game Manager/Blocks"]
 
 [node name="Block Tracker" type="Node" parent="Game Manager/Blocks"]
-
-[node name="Save Craft" type="Node" parent="Game Manager"]
-script = ExtResource("5_cj4pt")
 
 [node name="Sound Manager" type="Node" parent="."]
 
@@ -390,6 +398,16 @@ offset_bottom = 807.0
 theme_override_font_sizes/font_size = 21
 text = "Spawn"
 
+[node name="Vehicle Name" type="Node" parent="GUI/Building Screen/Main"]
+
+[node name="Vehicle Name Editor" type="LineEdit" parent="GUI/Building Screen/Main/Vehicle Name"]
+offset_left = 1467.0
+offset_top = 18.0
+offset_right = 1687.0
+offset_bottom = 53.0
+placeholder_text = "Craft name"
+alignment = 1
+
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="Mesh" type="MeshInstance3D" parent="Ground"]
@@ -445,4 +463,7 @@ texture = ExtResource("8_r5l6o")
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/HalfBlock" to="Game Manager/Blocks/Spawn Block" method="_on_spawn_button_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/OriginCube" to="Game Manager/Blocks/Spawn Block" method="_on_origin_cube_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Save" to="Game Manager/Save Craft" method="_on_save_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Load" to="Game Manager/Load Craft" method="_on_load_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/half" to="Game Manager/Grid Settings" method="_on_half_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/Full" to="Game Manager/Grid Settings" method="_on_full_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Spawn Vehicle/Spawn" to="Game Manager/Spawn Vehicle" method="_on_spawn_pressed"]

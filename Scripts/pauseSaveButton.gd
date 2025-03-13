@@ -22,9 +22,6 @@ func _on_pressed() -> void:
 	settings.save("res://saves/settings.cfg")
 
 
-
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -15,8 +15,6 @@ var isDragging : bool = false
 var gridSize = Vector3(0.5,0.5,0.5)
 
 
-
-
 func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("leftClick") and ray_cast() != null:
@@ -25,7 +23,7 @@ func _input(event: InputEvent) -> void:
 		isDragging = !isDragging
 		_translate_block()
 		
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and isDragging:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			var move_direction = (block_instance.global_position - CameraReference.global_position).normalized()
 			block_instance.global_position += move_direction * scrollSensitivity
