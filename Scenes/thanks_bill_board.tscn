@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://btcjp23bh8djs"]
+
+[ext_resource type="Texture2D" uid="uid://cjv7cj3nn1u2l" path="res://blockResources/Images/Jesus wayne herndevlin.png" id="1_dgbef"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s1egm"]
+
+[node name="Thanks BillBoard" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(4.13594, 0, 0, 0, 3.48797, 0, 0, 0, 0.0667793, 0, 1.68955, 0)
+mesh = SubResource("BoxMesh_s1egm")
+
+[node name="Label3D" type="Label3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19665, 0.0353391)
+text = "Shoutout to these bitch asses"
+
+[node name="Label3D2" type="Label3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.90593, 0.0353391)
+text = "ace123a"
+
+[node name="Label3D4" type="Label3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73444, 2.90593, 0.0353391)
+text = "- Sound"
+
+[node name="Label3D3" type="Label3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71204, 0.0353391)
+text = "Chubby Unicorn"
+
+[node name="Label3D5" type="Label3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20958, 2.71204, 0.0353391)
+text = "- Random Shit"
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37992, 0.119326)
+pixel_size = 0.005
+texture = ExtResource("1_dgbef")

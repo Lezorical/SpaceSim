@@ -3,11 +3,6 @@ extends Button
 
 var settings = ConfigFile.new()
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
 func _on_pressed() -> void:
 	var masterSound : float = $"../Sound/Master Sound".value
 	var musicSound : float= $"../Sound/Music Sound".value
@@ -20,8 +15,3 @@ func _on_pressed() -> void:
 	settings.set_value("look_sensitivity", "sensitivity", looksensitivity)
 	
 	settings.save("res://saves/settings.cfg")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

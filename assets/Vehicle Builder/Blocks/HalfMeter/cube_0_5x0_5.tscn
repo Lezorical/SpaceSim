@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4dteludr3m0s"]
+[gd_scene load_steps=6 format=3 uid="uid://d4dteludr3m0s"]
 
-[ext_resource type="Texture2D" uid="uid://b2368w2p0avqw" path="res://Images/Protoype Textures/kenney_prototype_textures/dark/texture_08.png" id="1_kyh1g"]
+[ext_resource type="Texture2D" uid="uid://b2368w2p0avqw" path="res://blockResources/Images/Protoype Textures/kenney_prototype_textures/dark/texture_08.png" id="1_kyh1g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kyh1g"]
+friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jusvy"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -12,7 +15,10 @@ albedo_texture = ExtResource("1_kyh1g")
 material = SubResource("StandardMaterial3D_6oedp")
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="Cube 0_5" type="Area3D" groups=["block"]]
+[node name="Cube 0_5" type="RigidBody3D" groups=["block"]]
+physics_material_override = SubResource("PhysicsMaterial_kyh1g")
+gravity_scale = 0.0
+can_sleep = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0128427, 0, 0)
@@ -21,3 +27,5 @@ shape = SubResource("BoxShape3D_jusvy")
 [node name="cube" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_wcqx8")
 skeleton = NodePath("")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="."]

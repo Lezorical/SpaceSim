@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://7xagpe0yhfyu"]
+
+[ext_resource type="AudioStream" uid="uid://ch27e5wpfrm7d" path="res://Sounds/old-radio-button-click-97549.mp3" id="1_1ddug"]
+[ext_resource type="Script" uid="uid://un4n4pp86m44" path="res://Scenes/animation_player.gd" id="1_msal1"]
+[ext_resource type="Script" uid="uid://dp7fvmcwjqlpk" path="res://Scripts/vehicle_button_spawner.gd" id="2_6vvwi"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ywrdn"]
+height = 0.0171524
+radius = 0.0849609
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ywrdn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msal1"]
+albedo_color = Color(0.72856, 0, 0.139641, 1)
+
+[sub_resource type="Animation" id="Animation_1ddug"]
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.0156121, 0), Vector3(0, 0, 0), Vector3(0, 0.016, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ywrdn"]
+resource_name = "push"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3001, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.0156121, 0), Vector3(0, 0, 0), Vector3(0, 0.016, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_msal1"]
+_data = {
+&"VehicleSpawnerButtonPushAnimation": SubResource("Animation_1ddug"),
+&"push": SubResource("Animation_ywrdn")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ddug"]
+albedo_color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[node name="Area3D" type="StaticBody3D" groups=["interactable", "spawnBlock"]]
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0181425, 0)
+shape = SubResource("CylinderShape3D_ywrdn")
+
+[node name="Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.17, 0, 0, 0, 0.011, 0, 0, 0, 0.17, 0, 0.0156121, 0)
+mesh = SubResource("CylinderMesh_ywrdn")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_msal1")
+
+[node name="Label3D2" type="Label3D" parent="Button"]
+transform = Transform3D(1, 0, 0, 0, 36.4485, 0, 0, 0, 1, 0, 6.85272, -0.565991)
+text = "THIS IS A TEST"
+font_size = 41
+
+[node name="Label3D" type="Label3D" parent="Button"]
+transform = Transform3D(0.903512, 0, 0, 0, -7.78356e-07, 118.182, 0, -1.1522, -3.34264e-07, 0, 1.11049, 0)
+text = "Spawn last 
+loaded
+vehicle"
+font_size = 24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button"]
+libraries = {
+&"": SubResource("AnimationLibrary_msal1")
+}
+script = ExtResource("1_msal1")
+
+[node name="SpawnVehicle" type="Node" parent="Button"]
+script = ExtResource("2_6vvwi")
+
+[node name="ButtonDesk" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.0105965, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ywrdn")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ddug")
+
+[node name="ButtonStand" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.12, 0, 0, 0, 0.158, 0, 0, 0, 0.12, 0, -0.165367, 0)
+mesh = SubResource("CylinderMesh_ywrdn")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ddug")
+
+[node name="Button Click" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0243019, 0)
+stream = ExtResource("1_1ddug")
+bus = &"sfx"

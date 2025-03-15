@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfbagtif6a1hd"]
+[gd_scene load_steps=6 format=3 uid="uid://dfbagtif6a1hd"]
 
-[ext_resource type="Texture2D" uid="uid://dlop7q83cphcp" path="res://Images/Protoype Textures/kenney_prototype_textures/orange/texture_06.png" id="1_hfbqc"]
+[ext_resource type="Texture2D" uid="uid://dlop7q83cphcp" path="res://blockResources/Images/Protoype Textures/kenney_prototype_textures/orange/texture_06.png" id="1_hfbqc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hfbqc"]
+friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jusvy"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -11,7 +14,10 @@ size = Vector3(0.5, 0.5, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jds1p"]
 albedo_texture = ExtResource("1_hfbqc")
 
-[node name="Cube 0_5" type="Area3D" groups=["block"]]
+[node name="Cube 0_5" type="RigidBody3D" groups=["block"]]
+physics_material_override = SubResource("PhysicsMaterial_hfbqc")
+gravity_scale = 0.0
+can_sleep = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0128427, 0, 0)

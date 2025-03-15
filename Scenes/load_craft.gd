@@ -5,10 +5,6 @@ extends Node
 @onready var scene_blocks: Node = $"../../SceneBlocks"
 
 
-
-var placed_blocks = []
-
-
 func _on_load_pressed() -> void:
 	clear_slate._clear_slate()
 	

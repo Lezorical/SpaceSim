@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="1_locyo"]
 [ext_resource type="Script" uid="uid://dw2ge3kbpjvn6" path="res://Scripts/load_manager.gd" id="1_nnvkl"]
 [ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="3_kcn4b"]
-[ext_resource type="Texture2D" uid="uid://cqvh3q8c0avek" path="res://Images/mouseSensitivty.png" id="3_wrt4b"]
+[ext_resource type="Texture2D" uid="uid://cqvh3q8c0avek" path="res://blockResources/Images/mouseSensitivty.png" id="3_wrt4b"]
 [ext_resource type="Script" uid="uid://c42xnud5ft786" path="res://Scripts/pauseSaveButton.gd" id="5_nivpb"]
 
 [sub_resource type="GDScript" id="GDScript_lbioe"]
@@ -14,6 +14,8 @@ script/source = "extends CanvasLayer
 @onready var hoverSound = $\"Sound Manager/HoverSound\"
 @onready var optionsMenu = $Options
 @onready var devMode = $Devmode
+@onready var player: CharacterBody3D = $\"../Player\"
+
 
 var saveSettings = ConfigFile.new()
 
@@ -69,6 +71,8 @@ func _on_devmode_pressed() -> void:
 func _on_dev_back_button_pressed() -> void:
 	clickSound.play()
 	devMode.visible = false
+func _on_respawn_pressed() -> void:
+	clickSound.play()
 
 
 #play hover sound
@@ -85,6 +89,8 @@ func _on_save_button_mouse_entered() -> void:
 func _on_devmode_mouse_entered() -> void:
 	hoverSound.play()
 func _on_dev_back_button_mouse_entered() -> void:
+	hoverSound.play()
+func _on_respawn_mouse_entered() -> void:
 	hoverSound.play()
 "
 
@@ -156,6 +162,11 @@ text = "Options"
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Quit"
+
+[node name="Respawn" type="Button" parent="Paused/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Respawn"
 
 [node name="Options" type="PanelContainer" parent="."]
 anchors_preset = 8
@@ -475,6 +486,8 @@ label_settings = SubResource("LabelSettings_owwc5")
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="Paused/MarginContainer/VBoxContainer/Respawn" to="." method="_on_respawn_mouse_entered"]
+[connection signal="pressed" from="Paused/MarginContainer/VBoxContainer/Respawn" to="." method="_on_respawn_pressed"]
 [connection signal="mouse_entered" from="Options/Panel/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Options/Panel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="mouse_entered" from="Options/Panel/Devmode" to="." method="_on_devmode_mouse_entered"]

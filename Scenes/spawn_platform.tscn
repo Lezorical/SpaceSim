@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://crhl7j6lx3i0h"]
+
+[ext_resource type="Texture2D" uid="uid://bw6uc15wl7ymk" path="res://blockResources/Images/spawn.png" id="1_8ncmp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wsu2k"]
+size = Vector3(3, 0.2, 3)
+
+[node name="Spawn Platform" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0322981, 0)
+mesh = SubResource("BoxMesh_wsu2k")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.14, 0)
+texture = ExtResource("1_8ncmp")

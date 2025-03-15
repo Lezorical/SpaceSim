@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://Scenes/game_manager.tscn"
+MessageBus="*res://Scripts/message_bus.gd"
 
 [display]
 
@@ -29,6 +30,8 @@ window/stretch/mode="viewport"
 
 interactable=""
 block=""
+spawnBlock=""
+builderMachine=""
 
 [input]
 
@@ -91,6 +94,8 @@ rightclick={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+3d/default_linear_damp=0.0
+3d/default_angular_damp=0.0
 
 [rendering]
 

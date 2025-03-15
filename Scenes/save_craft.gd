@@ -10,11 +10,11 @@ func _on_save_pressed() -> void:
 	
 	for child in scene_blocks.get_children():
 		
-		var name = child.name
+		var block_name = child.name
 		var position = child.global_position
 		var scene_path = child.get_scene_file_path()
 		
-		block_placement.set_value(str(name), "BlockType", scene_path)
-		block_placement.set_value(str(name), "BlockPosition", position)
+		block_placement.set_value(block_name, "BlockType", scene_path)
+		block_placement.set_value(block_name, "BlockPosition", position)
 		
 	block_placement.save("res://saves/" + craft_name + ".cfg")

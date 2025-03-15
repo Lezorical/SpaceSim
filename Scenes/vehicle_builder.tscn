@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://vtsapoijdtbj" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="2_jb2sb"]
 [ext_resource type="Script" uid="uid://5mh44asbamia" path="res://Scenes/load_craft.gd" id="2_ri8uo"]
-[ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://Images/SettingsIcon.png" id="2_ywmqw"]
+[ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://blockResources/Images/SettingsIcon.png" id="2_ywmqw"]
 [ext_resource type="Script" uid="uid://cvdawnm81qhxn" path="res://Scenes/mouse_curser.gd" id="3_hfgru"]
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="3_lll6w"]
 [ext_resource type="Script" uid="uid://dm0pn658u1l6j" path="res://Scenes/spawn_vehicle.gd" id="4_323cd"]
@@ -14,12 +14,12 @@
 [ext_resource type="Script" uid="uid://c3qdjtvsflvs" path="res://Scenes/spawn_block.gd" id="5_am6qb"]
 [ext_resource type="Script" uid="uid://c7dthg8laafxe" path="res://Scenes/save_craft.gd" id="5_cj4pt"]
 [ext_resource type="Script" uid="uid://bxyig0n81u1nj" path="res://Scripts/fps.gd" id="6_4c5h4"]
-[ext_resource type="Texture2D" uid="uid://i8hbobsvpp7" path="res://Images/X.png" id="6_v7mb0"]
-[ext_resource type="Texture2D" uid="uid://dwvwyk8cg5yy4" path="res://Images/centerimage.png" id="7_1y75d"]
-[ext_resource type="Texture2D" uid="uid://dfuauixm783h3" path="res://Images/mouse-cursor.png" id="7_n2nr7"]
+[ext_resource type="Texture2D" uid="uid://i8hbobsvpp7" path="res://blockResources/Images/X.png" id="6_v7mb0"]
+[ext_resource type="Texture2D" uid="uid://dwvwyk8cg5yy4" path="res://blockResources/Images/centerimage.png" id="7_1y75d"]
+[ext_resource type="Texture2D" uid="uid://dfuauixm783h3" path="res://blockResources/Images/mouse-cursor.png" id="7_n2nr7"]
 [ext_resource type="Script" uid="uid://4m33nptw8iel" path="res://Scenes/move_block.gd" id="7_x467w"]
-[ext_resource type="Texture2D" uid="uid://ch34rt1xfdvrv" path="res://Images/computer-keyboard.png" id="8_gia21"]
-[ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://Images/shipsymbol.png" id="8_r5l6o"]
+[ext_resource type="Texture2D" uid="uid://ch34rt1xfdvrv" path="res://blockResources/Images/computer-keyboard.png" id="8_gia21"]
+[ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://blockResources/Images/shipsymbol.png" id="8_r5l6o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgjx6"]
 
@@ -192,16 +192,6 @@ texture = ExtResource("6_v7mb0")
 
 [node name="X2" type="Sprite2D" parent="GUI/Building Screen/X7"]
 position = Vector2(1713, 848)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("6_v7mb0")
-
-[node name="X3" type="Sprite2D" parent="GUI/Building Screen/X7"]
-position = Vector2(1707, 906)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("6_v7mb0")
-
-[node name="X4" type="Sprite2D" parent="GUI/Building Screen/X7"]
-position = Vector2(1800, 906)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("6_v7mb0")
 

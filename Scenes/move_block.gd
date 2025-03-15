@@ -9,7 +9,7 @@ extends Node
 var isDragging : bool = false
 
 
-@onready var block_instance : Area3D
+@onready var block_instance : RigidBody3D
 @onready var scene_blocks: Node = $"../../../SceneBlocks"
 
 var gridSize = Vector3(0.5,0.5,0.5)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm7w0dthm4xj3"]
+
+[ext_resource type="Texture2D" uid="uid://crfq4rlttnyxt" path="res://File Drop/Solt_Machine_standardSurface1SG_BaseColor.tga" id="1_83fae"]
+[ext_resource type="ArrayMesh" uid="uid://cjg3vtwi6whoq" path="res://File Drop/Slot_Machine.obj" id="2_u3ia3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wycf"]
+albedo_texture = ExtResource("1_83fae")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdnlq"]
+size = Vector3(2.95044, 2.58777, 2.58258)
+
+[node name="Buildermachine" type="StaticBody3D" groups=["builderMachine", "interactable"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0458225, 0, 0, 0, 0.0458225, 0, 0, 0, 0.0458225, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_8wycf")
+mesh = ExtResource("2_u3ia3")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.950662, 0.310228, 0, -0.310228, 0.950662, 0, 2.73153, 0.692627)
+text = "BUILDING MACHINE"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0440674, 0.793884, 0.0652771)
+shape = SubResource("BoxShape3D_fdnlq")
