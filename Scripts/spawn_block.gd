@@ -3,20 +3,26 @@ extends Node
 @export var spawnPath : Node
 
 
+
 ##BLOCKS#################################################################################################
 
 #Engines
-@export var EngineBlock = preload("uid://dnh7ojgwcax0b") #Engine Block
+@onready var EngineBlock : PackedScene = preload("uid://dnh7ojgwcax0b") #Engine Block
 
 #Blocks
 @onready var halfBlock : PackedScene =  preload("uid://d4dteludr3m0s") # cube 0.5x0.5
 @onready var originBlock : PackedScene =  preload("uid://dfbagtif6a1hd") # Origin Block
 
 #Misc
-@export var ChairBlock = preload("uid://cuw5gyu2lvy4u") #Engine Block
-@export var PlayerSpawnSpot = preload("uid://d3u0ahmfu0xvp") #Engine Block
+@onready var ChairBlock : PackedScene = preload("uid://cuw5gyu2lvy4u") #Engine Block
+@onready var PlayerSpawnSpot : PackedScene = preload("uid://d3u0ahmfu0xvp") #Engine Block
 
 ##BLOCKS#################################################################################################
+
+
+func _on_move_block_block_placed() -> void:
+	_on_origin_cube_pressed()
+
 
 
 func spawnAndPlace(instance):

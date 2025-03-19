@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0xirorrqab3n"]
+[gd_scene load_steps=13 format=3 uid="uid://d0xirorrqab3n"]
 
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="1_bolqb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="1_locyo"]
 [ext_resource type="Script" uid="uid://dw2ge3kbpjvn6" path="res://Scripts/load_manager.gd" id="1_nnvkl"]
+[ext_resource type="Script" uid="uid://dtcdh7dg7m5cr" path="res://Scenes/pause_menu_sound_settings.gd" id="2_0pswh"]
 [ext_resource type="Texture2D" uid="uid://pc7xcm0rfmbd" path="res://Menus/Images/soundIcon.png" id="3_kcn4b"]
 [ext_resource type="Texture2D" uid="uid://cqvh3q8c0avek" path="res://blockResources/Images/mouseSensitivty.png" id="3_wrt4b"]
 [ext_resource type="Script" uid="uid://c42xnud5ft786" path="res://Scripts/pauseSaveButton.gd" id="5_nivpb"]
@@ -113,6 +114,9 @@ script = SubResource("GDScript_lbioe")
 
 [node name="Load Manager" type="Node" parent="."]
 script = ExtResource("1_nnvkl")
+
+[node name="SoundSettings" type="Node" parent="Load Manager"]
+script = ExtResource("2_0pswh")
 
 [node name="Sound Manager" type="Node" parent="."]
 

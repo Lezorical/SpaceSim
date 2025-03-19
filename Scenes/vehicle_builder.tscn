@@ -324,14 +324,6 @@ offset_bottom = 114.0
 text = "Chair
 "
 
-[node name="PlayerSpawnSpot" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
-layout_mode = 0
-offset_left = 123.0
-offset_top = 84.0
-offset_right = 192.0
-offset_bottom = 115.0
-text = "Spawn"
-
 [node name="Save_Load" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
 
 [node name="Save" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load"]
@@ -467,6 +459,7 @@ texture = ExtResource("8_r5l6o")
 
 [node name="SceneBlocks" type="Node" parent="."]
 
+[connection signal="block_placed" from="Game Manager/Blocks/Move Block" to="Game Manager/Blocks/Spawn Block" method="_on_move_block_block_placed"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Settings Button" to="Game Manager/Button Actions" method="_on_settings_button_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_mouse_entered"]
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_pressed"]
@@ -480,7 +473,6 @@ texture = ExtResource("8_r5l6o")
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/OriginCube" to="Game Manager/Blocks/Spawn Block" method="_on_origin_cube_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/EngineBlock" to="Game Manager/Blocks/Spawn Block" method="_on_engine_block_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/ChairBlock" to="Game Manager/Blocks/Spawn Block" method="_on_chair_block_2_pressed"]
-[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/PlayerSpawnSpot" to="Game Manager/Blocks/Spawn Block" method="_on_player_spawn_spot_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Save" to="Game Manager/Save Craft" method="_on_save_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Load" to="Game Manager/Load Craft" method="_on_load_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/half" to="Game Manager/Grid Settings" method="_on_half_pressed"]

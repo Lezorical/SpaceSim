@@ -7,10 +7,10 @@ extends Node
 
 #Dragging or not
 var isDragging : bool = false
-
+signal block_placed
 
 @onready var block_instance : RigidBody3D
-@onready var scene_blocks: Node = $"../../../SceneBlocks"
+@onready var scene_blocks : Node = $"../../../SceneBlocks"
 
 var gridSize = Vector3(0.5,0.5,0.5)
 
@@ -18,7 +18,6 @@ func delete_current_block(instance):
 	if isDragging:
 		isDragging = !isDragging
 		instance.queue_free()
-	
 
 
 func _input(event: InputEvent) -> void:
@@ -31,7 +30,12 @@ func _input(event: InputEvent) -> void:
 		block_instance = scene_blocks.find_child(_get_object_in_mouse(), true, false)
 		print(block_instance)
 		isDragging = !isDragging
+		
+		if not isDragging and event.is_action_pressed("leftClick"):
+			block_placed.emit()
+		
 		_translate_block()
+		
 		
 	if event is InputEventMouseButton and isDragging:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
