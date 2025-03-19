@@ -22,7 +22,7 @@ extends Node
 func spawnAndPlace(instance):
 	spawnPath.add_child(instance)
 	instance.global_position = Vector3(0,0,0)
-	#instance.freeze = true
+	instance.freeze = true
 
 
 func _on_spawn_button_pressed() -> void:

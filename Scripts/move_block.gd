@@ -14,8 +14,18 @@ var isDragging : bool = false
 
 var gridSize = Vector3(0.5,0.5,0.5)
 
+func delete_current_block(instance):
+	if isDragging:
+		isDragging = !isDragging
+		instance.queue_free()
+	
+
 
 func _input(event: InputEvent) -> void:
+	
+	if event.is_action_pressed("deleteBlock") and ray_cast() != null:
+		block_instance = scene_blocks.find_child(_get_object_in_mouse(), true, false)
+		delete_current_block(block_instance)
 	
 	if event.is_action_pressed("leftClick") and ray_cast() != null:
 		block_instance = scene_blocks.find_child(_get_object_in_mouse(), true, false)

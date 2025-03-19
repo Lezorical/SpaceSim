@@ -5,14 +5,14 @@ func _on_animation_player_call_spawner() -> void:
 
 
 func spawn_vehicle():
-	var craft_name : String = "door2"
+	var craft_name : String = "spaceship"
 	
 	var block_placement = ConfigFile.new()
 	block_placement.load("res://saves/" + craft_name + ".cfg")
 	
 	var SpaceCraftParent : Area3D = Area3D.new()
 	SpaceCraftParent.name = craft_name
-	SpaceCraftParent.position = Vector3(-20,0.80,0) #<-- Location above platform -20,8,-50 <--Middle location of Scaffold
+	SpaceCraftParent.position = Vector3(-20,-1.5,0) #<-- Location above platform -20,8,-50 <--Middle location of Scaffold
 	get_node("/root/Main").add_child(SpaceCraftParent)
 	
 	for section in block_placement.get_sections():
@@ -24,5 +24,5 @@ func spawn_vehicle():
 		
 		instance.global_position = position
 		SpaceCraftParent.add_child(instance)
-		instance.freeze = 1
+		instance.freeze = 0
 		print("Spawned ", instance.name, " at position ", instance.global_position)
