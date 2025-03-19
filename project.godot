@@ -32,6 +32,7 @@ interactable=""
 block=""
 spawnBlock=""
 builderMachine=""
+chair=""
 
 [input]
 

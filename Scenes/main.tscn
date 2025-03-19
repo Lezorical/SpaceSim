@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://cbutlcdf6151o"]
+[gd_scene load_steps=21 format=3 uid="uid://cbutlcdf6151o"]
 
+[ext_resource type="Script" uid="uid://cli1jp67l2f58" path="res://Scripts/set_time_scale_at_spawn.gd" id="1_hptm8"]
 [ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://blockResources/Images/93034.jpg" id="2_crfub"]
 [ext_resource type="Texture2D" uid="uid://dhh6q0ny3u2ve" path="res://File Drop/grid-texture.jpg" id="3_fx17k"]
 [ext_resource type="PackedScene" uid="uid://bm7w0dthm4xj3" path="res://Scenes/VehicleBuilderMachine.tscn" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://d0xirorrqab3n" path="res://Scenes/pause.tscn" id="9_uqv2k"]
 [ext_resource type="Texture2D" uid="uid://7rm3cpppvhta" path="res://blockResources/Images/trak_light3_64.jpg" id="10_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://ce217mf1p608r" path="res://Scenes/player.tscn" id="10_n7be5"]
-[ext_resource type="Texture2D" uid="uid://i8hbobsvpp7" path="res://blockResources/Images/X.png" id="11_6iyac"]
 [ext_resource type="PackedScene" uid="uid://btcjp23bh8djs" path="res://Scenes/thanks_bill_board.tscn" id="13_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://7xagpe0yhfyu" path="res://Scenes/spawn_vehicle.tscn" id="14_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://crhl7j6lx3i0h" path="res://Scenes/spawn_platform.tscn" id="14_wsu2k"]
@@ -39,14 +39,6 @@ uv1_scale = Vector3(6, 6, 6)
 material = SubResource("StandardMaterial3D_fdnlq")
 size = Vector3(1, 1, 40)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wsu2k"]
-albedo_texture = ExtResource("11_6iyac")
-
-[sub_resource type="SphereMesh" id="SphereMesh_k12tt"]
-material = SubResource("StandardMaterial3D_wsu2k")
-radius = 1.0
-height = 2.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qdv13"]
 albedo_texture = ExtResource("3_fx17k")
 
@@ -55,6 +47,11 @@ albedo_texture = ExtResource("3_fx17k")
 [sub_resource type="BoxShape3D" id="BoxShape3D_sep1m"]
 
 [node name="Main" type="Node3D"]
+
+[node name="Game Manager" type="Node" parent="."]
+
+[node name="Set Time Scale at Spawn" type="Node" parent="Game Manager"]
+script = ExtResource("1_hptm8")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jjhs0")
@@ -70,17 +67,17 @@ transform = Transform3D(0.0244036, 0, 0, 0, 0.0163674, 0.0181009, 0, -0.0181009,
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("10_n7be5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.2, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61313, 0)
 
 [node name="Pause Menu" parent="." instance=ExtResource("9_uqv2k")]
 
 [node name="Enviornment" type="Node" parent="."]
 
 [node name="Spawn Platform" parent="Enviornment" instance=ExtResource("14_wsu2k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.568, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.568, 0)
 
 [node name="Spawn Vehicle" parent="Enviornment" instance=ExtResource("14_jkdf5")]
-transform = Transform3D(3.5, 0, 0, 0, 3, 0, 0, 0, 3.5, -3.4061, 1.49651, -26.2109)
+transform = Transform3D(3.5, 0, 0, 0, 3, 0, 0, 0, 3.5, -0.324903, 1.49651, -3.30597)
 
 [node name="Thanks BillBoard" parent="Enviornment" instance=ExtResource("13_fdnlq")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 33.324, 0.431556, 20.8852)
@@ -138,14 +135,14 @@ mesh = SubResource("BoxMesh_jkdf5")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.5825, 39.7016, -32.5451)
 mesh = SubResource("BoxMesh_jkdf5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviornment/SpawnSpace"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6021, 17.7511, -49.7482)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviornment/SpawnSpace/StaticBody3D"]
-mesh = SubResource("SphereMesh_k12tt")
+[node name="Label3D" type="Label3D" parent="Enviornment/SpawnSpace/Scaffold"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2146, 17.4846, -32.267)
+text = "THEY CALL ME THE
+'SPAWNER BOY'"
+font_size = 756
 
 [node name="Buildermachine" parent="Enviornment" instance=ExtResource("9_hptm8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.510127, 0.5, -26.1265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89689, 0.5, -3.19034)
 
 [node name="Platform" type="StaticBody3D" parent="Enviornment"]
 transform = Transform3D(83.2079, 0, 0, 0, 1, 0, 0, 0, 55.1538, 0, 0, 0)

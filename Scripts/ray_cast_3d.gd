@@ -1,9 +1,9 @@
 extends RayCast3D
 
-var collider = $".".get_collider()
+var collider = self.get_collider()
 
 @onready var iscolliding: Label = $"../../Debug Info/ISCOLLIDING"
-@onready var interact_sprite: Sprite2D = $"../../Debug Info/InteractSprite"
+@onready var interact_sprite: Sprite2D = $"../../InteractSprite"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -14,7 +14,6 @@ func _ready() -> void:
 	Are_You_Sure_prompt.visible = false
 
 
-
 #Are you sure button Logic
 func _on_main_menu_button_pressed() -> void:
 	ButtonPressedSound.play()
@@ -25,11 +24,10 @@ func _on_yes_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 func _on_no_button_pressed() -> void:
 	ButtonPressedSound.play()
+	Engine.time_scale = 1
 	Are_You_Sure_prompt.visible = false
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
-
-
 
 
 #Play mouse Hover sounds

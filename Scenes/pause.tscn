@@ -73,6 +73,7 @@ func _on_dev_back_button_pressed() -> void:
 	devMode.visible = false
 func _on_respawn_pressed() -> void:
 	clickSound.play()
+	player.position = Vector3(0,1,0)
 
 
 #play hover sound

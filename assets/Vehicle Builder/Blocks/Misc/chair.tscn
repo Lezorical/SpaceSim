@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuw5gyu2lvy4u"]
+
+[ext_resource type="ArrayMesh" uid="uid://411xi0nahufu" path="res://Objects/Chair.obj" id="1_ou3dv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fu5f6"]
+friction = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ou3dv"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Chair" type="RigidBody3D" groups=["Chair", "chair", "interactable"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_fu5f6")
+gravity_scale = 0.0
+can_sleep = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ou3dv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.25, 0)
+mesh = ExtResource("1_ou3dv")

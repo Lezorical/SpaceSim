@@ -27,5 +27,3 @@ shape = SubResource("BoxShape3D_jusvy")
 [node name="cube" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_wcqx8")
 skeleton = NodePath("")
-
-[node name="PinJoint3D" type="PinJoint3D" parent="."]

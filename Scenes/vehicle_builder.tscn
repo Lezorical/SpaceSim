@@ -1,23 +1,23 @@
 [gd_scene load_steps=34 format=3 uid="uid://0i0l5kjf1ots"]
 
-[ext_resource type="Script" uid="uid://b1ujc7cgsnqpt" path="res://Scenes/clear_slate.gd" id="1_736lr"]
+[ext_resource type="Script" uid="uid://b1ujc7cgsnqpt" path="res://Scripts/clear_slate.gd" id="1_736lr"]
 [ext_resource type="Script" uid="uid://hmh8qnigh3f2" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
 [ext_resource type="Script" uid="uid://cts6iyoerhsgx" path="res://Scripts/item_selector.gd" id="2_b1j14"]
 [ext_resource type="Script" uid="uid://vtsapoijdtbj" path="res://Scripts/mesh_camera.gd" id="2_gspcb"]
 [ext_resource type="AudioStream" uid="uid://c334jptuykx8x" path="res://Sounds/clickSound1.mp3" id="2_jb2sb"]
-[ext_resource type="Script" uid="uid://5mh44asbamia" path="res://Scenes/load_craft.gd" id="2_ri8uo"]
+[ext_resource type="Script" uid="uid://5mh44asbamia" path="res://Scripts/load_craft.gd" id="2_ri8uo"]
 [ext_resource type="Texture2D" uid="uid://ceebbrm1ni6g0" path="res://blockResources/Images/SettingsIcon.png" id="2_ywmqw"]
-[ext_resource type="Script" uid="uid://cvdawnm81qhxn" path="res://Scenes/mouse_curser.gd" id="3_hfgru"]
+[ext_resource type="Script" uid="uid://cvdawnm81qhxn" path="res://Scripts/mouse_curser.gd" id="3_hfgru"]
 [ext_resource type="AudioStream" uid="uid://c73kr3l5w007k" path="res://Sounds/hoverSound.mp3" id="3_lll6w"]
-[ext_resource type="Script" uid="uid://dm0pn658u1l6j" path="res://Scenes/spawn_vehicle.gd" id="4_323cd"]
-[ext_resource type="Script" uid="uid://dqckcqbf8nwg8" path="res://Scenes/grid_settings.gd" id="5_736lr"]
-[ext_resource type="Script" uid="uid://c3qdjtvsflvs" path="res://Scenes/spawn_block.gd" id="5_am6qb"]
-[ext_resource type="Script" uid="uid://c7dthg8laafxe" path="res://Scenes/save_craft.gd" id="5_cj4pt"]
+[ext_resource type="Script" uid="uid://dm0pn658u1l6j" path="res://Scripts/spawn_vehicle.gd" id="4_323cd"]
+[ext_resource type="Script" uid="uid://dqckcqbf8nwg8" path="res://Scripts/grid_settings.gd" id="5_736lr"]
+[ext_resource type="Script" uid="uid://c3qdjtvsflvs" path="res://Scripts/spawn_block.gd" id="5_am6qb"]
+[ext_resource type="Script" uid="uid://c7dthg8laafxe" path="res://Scripts/save_craft.gd" id="5_cj4pt"]
 [ext_resource type="Script" uid="uid://bxyig0n81u1nj" path="res://Scripts/fps.gd" id="6_4c5h4"]
 [ext_resource type="Texture2D" uid="uid://i8hbobsvpp7" path="res://blockResources/Images/X.png" id="6_v7mb0"]
 [ext_resource type="Texture2D" uid="uid://dwvwyk8cg5yy4" path="res://blockResources/Images/centerimage.png" id="7_1y75d"]
 [ext_resource type="Texture2D" uid="uid://dfuauixm783h3" path="res://blockResources/Images/mouse-cursor.png" id="7_n2nr7"]
-[ext_resource type="Script" uid="uid://4m33nptw8iel" path="res://Scenes/move_block.gd" id="7_x467w"]
+[ext_resource type="Script" uid="uid://4m33nptw8iel" path="res://Scripts/move_block.gd" id="7_x467w"]
 [ext_resource type="Texture2D" uid="uid://ch34rt1xfdvrv" path="res://blockResources/Images/computer-keyboard.png" id="8_gia21"]
 [ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://blockResources/Images/shipsymbol.png" id="8_r5l6o"]
 
@@ -167,7 +167,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.000
 [node name="Camera Holder" type="Node" parent="."]
 
 [node name="Camera" type="Camera3D" parent="Camera Holder"]
-transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, -11.9067, 15, 15)
+transform = Transform3D(0.707107, 0.353553, -0.612373, 0, 0.866026, 0.5, 0.707107, -0.353553, 0.612373, -4.38767, 5.66336, 4.40112)
 current = true
 far = 200000.0
 script = ExtResource("2_gspcb")
@@ -305,6 +305,32 @@ offset_right = 142.0
 offset_bottom = 62.0
 text = "*Origin Cube
 "
+
+[node name="EngineBlock" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 30.0
+offset_right = 322.0
+offset_bottom = 61.0
+text = "Engine1
+"
+
+[node name="ChairBlock" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 83.0
+offset_right = 89.0
+offset_bottom = 114.0
+text = "Chair
+"
+
+[node name="PlayerSpawnSpot" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 84.0
+offset_right = 192.0
+offset_bottom = 115.0
+text = "Spawn"
 
 [node name="Save_Load" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
 
@@ -452,6 +478,9 @@ texture = ExtResource("8_r5l6o")
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Are you sure Prompt/Quit Button" to="Game Manager/Button Actions" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/HalfBlock" to="Game Manager/Blocks/Spawn Block" method="_on_spawn_button_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/OriginCube" to="Game Manager/Blocks/Spawn Block" method="_on_origin_cube_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/EngineBlock" to="Game Manager/Blocks/Spawn Block" method="_on_engine_block_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/ChairBlock" to="Game Manager/Blocks/Spawn Block" method="_on_chair_block_2_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/PlayerSpawnSpot" to="Game Manager/Blocks/Spawn Block" method="_on_player_spawn_spot_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Save" to="Game Manager/Save Craft" method="_on_save_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Load" to="Game Manager/Load Craft" method="_on_load_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/half" to="Game Manager/Grid Settings" method="_on_half_pressed"]

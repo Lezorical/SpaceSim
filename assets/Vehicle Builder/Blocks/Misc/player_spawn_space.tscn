@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3u0ahmfu0xvp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wcqx8"]
+size = Vector3(0.5, 2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jaqnd"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.129412)
+
+[node name="Cube 0_5" type="Area3D" groups=["block"]]
+
+[node name="cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wcqx8")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_jaqnd")

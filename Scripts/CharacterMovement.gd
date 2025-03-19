@@ -14,7 +14,8 @@ var is_running : bool = false
 @export var look_sensitivity : float = 0.005
 var camera_look_input : Vector2
 
-@onready var camera = $Camera3D
+@onready var camera: Camera3D = $"First Person Camera"
+
 @onready var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_modifyer
 
 func _ready() -> void:
