@@ -20,7 +20,6 @@ func _on_load_pressed() -> void:
 		var loaded_scene = load(scene_path)
 		var instance = loaded_scene.instantiate()
 		
-		#instance.name = section # Restore the original name. VERY IMPORTANT!
 		instance.global_position = position
 		scene_blocks.add_child(instance)
 		

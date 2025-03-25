@@ -4,10 +4,11 @@ extends Node
 @export var CameraReference : Camera3D
 @export var scrollSensitivity = 0.5
 @export var RAY_LENGTH = 2000
+@onready var spawn_block: Node = $"../Spawn Block"
+
 
 #Dragging or not
 var isDragging : bool = false
-signal block_placed
 
 @onready var block_instance : RigidBody3D
 @onready var scene_blocks : Node = $"../../../SceneBlocks"
@@ -28,11 +29,16 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("leftClick") and ray_cast() != null:
 		block_instance = scene_blocks.find_child(_get_object_in_mouse(), true, false)
-		print(block_instance)
 		isDragging = !isDragging
 		
 		if not isDragging and event.is_action_pressed("leftClick"):
-			block_placed.emit()
+			
+			
+			spawn_block.spawnAndPlaceAfterPlace(block_instance.global_position, block_instance )
+			print(scene_blocks.find_child(_get_object_in_mouse(), true, false))
+			isDragging = !isDragging
+			
+		
 		
 		_translate_block()
 		

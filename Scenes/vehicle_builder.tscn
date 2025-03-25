@@ -223,6 +223,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="User Prompt" type="Label" parent="GUI/Building Screen/Main"]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 101.0
+offset_right = 1009.0
+offset_bottom = 124.0
+
 [node name="Settings Button" type="Button" parent="GUI/Building Screen/Main"]
 layout_mode = 0
 offset_left = 1851.0
@@ -342,6 +349,14 @@ offset_bottom = 929.0
 theme_override_font_sizes/font_size = 25
 text = "Load"
 
+[node name="Clear" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load"]
+offset_left = 1765.0
+offset_top = 820.0
+offset_right = 1840.0
+offset_bottom = 870.0
+theme_override_font_sizes/font_size = 25
+text = "Clear"
+
 [node name="Grid Size" type="Node" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
 
 [node name="Grid Size" type="Label" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size"]
@@ -459,7 +474,6 @@ texture = ExtResource("8_r5l6o")
 
 [node name="SceneBlocks" type="Node" parent="."]
 
-[connection signal="block_placed" from="Game Manager/Blocks/Move Block" to="Game Manager/Blocks/Spawn Block" method="_on_move_block_block_placed"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Settings Button" to="Game Manager/Button Actions" method="_on_settings_button_mouse_entered"]
 [connection signal="mouse_entered" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_mouse_entered"]
 [connection signal="pressed" from="GUI/Building Screen/Main/Main Menu Button/Main Menu Button" to="Game Manager/Button Actions" method="_on_main_menu_button_pressed"]
@@ -475,6 +489,7 @@ texture = ExtResource("8_r5l6o")
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/ChairBlock" to="Game Manager/Blocks/Spawn Block" method="_on_chair_block_2_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Save" to="Game Manager/Save Craft" method="_on_save_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Load" to="Game Manager/Load Craft" method="_on_load_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Clear" to="Game Manager/Button Actions" method="_on_clear_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/half" to="Game Manager/Grid Settings" method="_on_half_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/Full" to="Game Manager/Grid Settings" method="_on_full_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Spawn Vehicle/Spawn" to="Game Manager/Spawn Vehicle" method="_on_spawn_pressed"]
