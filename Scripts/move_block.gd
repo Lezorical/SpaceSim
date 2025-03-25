@@ -5,6 +5,8 @@ extends Node
 @export var scrollSensitivity = 0.5
 @export var RAY_LENGTH = 2000
 @onready var spawn_block: Node = $"../Spawn Block"
+@onready var delete_block_sound: AudioStreamPlayer = $"../../../Sound Manager/Delete Block Sound"
+
 
 
 #Dragging or not
@@ -16,6 +18,7 @@ var isDragging : bool = false
 var gridSize = Vector3(0.5,0.5,0.5)
 
 func delete_current_block(instance):
+	delete_block_sound.play()
 	if isDragging:
 		isDragging = !isDragging
 		instance.queue_free()

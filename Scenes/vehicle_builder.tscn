@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://0i0l5kjf1ots"]
+[gd_scene load_steps=35 format=3 uid="uid://0i0l5kjf1ots"]
 
 [ext_resource type="Script" uid="uid://b1ujc7cgsnqpt" path="res://Scripts/clear_slate.gd" id="1_736lr"]
 [ext_resource type="Script" uid="uid://hmh8qnigh3f2" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://4m33nptw8iel" path="res://Scripts/move_block.gd" id="7_x467w"]
 [ext_resource type="Texture2D" uid="uid://ch34rt1xfdvrv" path="res://blockResources/Images/computer-keyboard.png" id="8_gia21"]
 [ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://blockResources/Images/shipsymbol.png" id="8_r5l6o"]
+[ext_resource type="AudioStream" uid="uid://d4l5pdf4bpnhk" path="res://Sounds/quotcancelledquot-175693.mp3" id="13_x467w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgjx6"]
 
@@ -155,6 +156,9 @@ stream = ExtResource("2_jb2sb")
 
 [node name="Button Hover Sound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("3_lll6w")
+
+[node name="Delete Block Sound" type="AudioStreamPlayer" parent="Sound Manager"]
+stream = ExtResource("13_x467w")
 
 [node name="Environment" type="Node" parent="."]
 

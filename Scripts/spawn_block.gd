@@ -28,21 +28,15 @@ func spawnAndPlace(instance):
 
 
 func spawnAndPlaceAfterPlace(location, block_instance):
-	
-	print(block_instance)
-	#var instance = halfBlock.instantiate()
-	
-	
-	
 	var loaded_scene = load(block_instance.get_scene_file_path())
 	var instance = loaded_scene.instantiate()
-	
-	#var instance = halfBlock.instantiate()
-	instance.name = str("halfBlock", " ", instance.get_instance_id())
-	
+	print(instance.name, " ", instance.get_instance_id(), "<")
+	#instance.name = str(instance.name, " ", instance.get_instance_id())
 	instance.global_position = Vector3(location)
 	spawnPath.add_child(instance)
+	
 	instance.freeze = true
+
 
 func _on_spawn_button_pressed() -> void:
 	var instance = halfBlock.instantiate()
