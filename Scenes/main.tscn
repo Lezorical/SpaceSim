@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbutlcdf6151o"]
+[gd_scene load_steps=23 format=3 uid="uid://cbutlcdf6151o"]
 
 [ext_resource type="Script" uid="uid://cli1jp67l2f58" path="res://Scripts/set_time_scale_at_spawn.gd" id="1_hptm8"]
 [ext_resource type="Texture2D" uid="uid://en7tor04mg3i" path="res://blockResources/Images/93034.jpg" id="2_crfub"]
@@ -45,6 +45,10 @@ albedo_texture = ExtResource("3_fx17k")
 [sub_resource type="BoxMesh" id="BoxMesh_2lv2r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sep1m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hptm8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d1ilt"]
 
 [node name="Main" type="Node3D"]
 
@@ -142,7 +146,7 @@ text = "THEY CALL ME THE
 font_size = 756
 
 [node name="Buildermachine" parent="Enviornment" instance=ExtResource("9_hptm8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89689, 0.5, -3.19034)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01219, 2.07211, 1.45139)
 
 [node name="Platform" type="StaticBody3D" parent="Enviornment"]
 transform = Transform3D(83.2079, 0, 0, 0, 1, 0, 0, 0, 55.1538, 0, 0, 0)
@@ -154,3 +158,13 @@ skeleton = NodePath("../Collision")
 
 [node name="Collision" type="CollisionShape3D" parent="Enviornment/Platform"]
 shape = SubResource("BoxShape3D_sep1m")
+
+[node name="Test Cube" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.434, 1.47349, 0)
+mass = 766.948
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Test Cube"]
+mesh = SubResource("BoxMesh_hptm8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test Cube"]
+shape = SubResource("BoxShape3D_d1ilt")

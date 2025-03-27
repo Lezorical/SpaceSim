@@ -11,14 +11,14 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4oqcb"]
 radius = 0.2
-height = 1.8
+height = 1.48
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5y22"]
 albedo_color = Color(0.947054, 0.781557, 0.115122, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jujd4"]
 radius = 0.2
-height = 1.8
+height = 1.48
 
 [sub_resource type="LabelSettings" id="LabelSettings_cfmaw"]
 font_size = 181
@@ -44,6 +44,7 @@ shape = SubResource("CapsuleShape3D_jujd4")
 
 [node name="Third Person Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2.13217, 2.01997)
+current = true
 
 [node name="First Person Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605464, 0)

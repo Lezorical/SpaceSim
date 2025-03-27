@@ -153,12 +153,15 @@ spawnPath = NodePath("../../../SceneBlocks")
 
 [node name="Button Click Sound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("2_jb2sb")
+bus = &"sfx"
 
 [node name="Button Hover Sound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("3_lll6w")
+bus = &"sfx"
 
 [node name="Delete Block Sound" type="AudioStreamPlayer" parent="Sound Manager"]
 stream = ExtResource("13_x467w")
+bus = &"sfx"
 
 [node name="Environment" type="Node" parent="."]
 
