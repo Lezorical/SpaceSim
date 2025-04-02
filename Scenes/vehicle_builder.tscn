@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://0i0l5kjf1ots"]
+[gd_scene load_steps=37 format=3 uid="uid://0i0l5kjf1ots"]
 
 [ext_resource type="Script" uid="uid://b1ujc7cgsnqpt" path="res://Scripts/clear_slate.gd" id="1_736lr"]
 [ext_resource type="Script" uid="uid://hmh8qnigh3f2" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
@@ -20,7 +20,9 @@
 [ext_resource type="Script" uid="uid://4m33nptw8iel" path="res://Scripts/move_block.gd" id="7_x467w"]
 [ext_resource type="Texture2D" uid="uid://ch34rt1xfdvrv" path="res://blockResources/Images/computer-keyboard.png" id="8_gia21"]
 [ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://blockResources/Images/shipsymbol.png" id="8_r5l6o"]
+[ext_resource type="Script" uid="uid://d5klwjt1ya1k" path="res://Scripts/rotate_block.gd" id="11_cjtao"]
 [ext_resource type="AudioStream" uid="uid://d4l5pdf4bpnhk" path="res://Sounds/quotcancelledquot-175693.mp3" id="13_x467w"]
+[ext_resource type="PackedScene" uid="uid://deinjqhqvjf2e" path="res://Scenes/translate_arrow.tscn" id="22_tuj3i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgjx6"]
 
@@ -146,6 +148,7 @@ script = ExtResource("5_am6qb")
 spawnPath = NodePath("../../../SceneBlocks")
 
 [node name="Rotate Block" type="Node" parent="Game Manager/Blocks"]
+script = ExtResource("11_cjtao")
 
 [node name="Block Tracker" type="Node" parent="Game Manager/Blocks"]
 
@@ -174,7 +177,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.000
 [node name="Camera Holder" type="Node" parent="."]
 
 [node name="Camera" type="Camera3D" parent="Camera Holder"]
-transform = Transform3D(0.707107, 0.353553, -0.612373, 0, 0.866026, 0.5, 0.707107, -0.353553, 0.612373, -4.38767, 5.66336, 4.40112)
+transform = Transform3D(0.707107, 0.353553, -0.612373, 0, 0.866026, 0.499999, 0.707107, -0.353553, 0.612373, -3.37713, 2.95405, 3.00182)
 current = true
 far = 200000.0
 script = ExtResource("2_gspcb")
@@ -438,46 +441,51 @@ offset_bottom = 53.0
 placeholder_text = "Craft name"
 alignment = 1
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="User" type="Node" parent="."]
 
-[node name="Mesh" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_mtopj")
+[node name="Translate Arrow" parent="User" instance=ExtResource("22_tuj3i")]
 
 [node name="Decorations" type="Node" parent="."]
 
-[node name="Sprite3D" type="Sprite3D" parent="Decorations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+[node name="Ground" type="Node3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="BOW" type="Label3D" parent="Decorations/Ground"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 14.232, 0, 0.016)
+text = "Bow"
+font_size = 100
+
+[node name="STERN" type="Label3D" parent="Decorations/Ground"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -14.147, 0, 0)
+text = "Stern"
+font_size = 100
+
+[node name="PORT" type="Label3D" parent="Decorations/Ground"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -14.053)
+text = "Port"
+font_size = 100
+
+[node name="STARBOARD" type="Label3D" parent="Decorations/Ground"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0.0148811, 0, 14.2516)
+text = "Starboard"
+font_size = 100
+
+[node name="SHIP" type="Sprite3D" parent="Decorations/Ground"]
+transform = Transform3D(-4.37114e-07, 10, -4.37114e-07, 0, -4.37114e-07, -10, -10, -4.37114e-07, 1.91069e-14, 0.075, 0, 0.07)
+texture = ExtResource("8_r5l6o")
+
+[node name="Mesh" type="MeshInstance3D" parent="Decorations/Ground"]
+mesh = SubResource("BoxMesh_mtopj")
+skeleton = NodePath("")
+
+[node name="Center" type="Sprite3D" parent="Decorations"]
 texture = ExtResource("7_1y75d")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/Sprite3D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/Center"]
 libraries = {
 &"": SubResource("AnimationLibrary_ijvk1")
 }
 autoplay = "new_animation"
-
-[node name="Label3D" type="Label3D" parent="Decorations"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 14.232, -0.0329332, 0.0156827)
-text = "Bow"
-font_size = 100
-
-[node name="Label3D2" type="Label3D" parent="Decorations"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -14.1467, 0, 0)
-text = "Stern"
-font_size = 100
-
-[node name="Label3D3" type="Label3D" parent="Decorations"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -14.0531)
-text = "Port"
-font_size = 100
-
-[node name="Label3D4" type="Label3D" parent="Decorations"]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 14.2564)
-text = "Port"
-font_size = 100
-
-[node name="Sprite3D2" type="Sprite3D" parent="Decorations"]
-transform = Transform3D(-4.37114e-07, 10, -4.37114e-07, 0, -4.37114e-07, -10, -10, -4.37114e-07, 1.91069e-14, 0.0745869, 0.0837727, 0.0698032)
-texture = ExtResource("8_r5l6o")
 
 [node name="SceneBlocks" type="Node" parent="."]
 

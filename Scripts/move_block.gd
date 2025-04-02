@@ -7,6 +7,10 @@ extends Node
 @onready var spawn_block: Node = $"../Spawn Block"
 @onready var delete_block_sound: AudioStreamPlayer = $"../../../Sound Manager/Delete Block Sound"
 
+@onready var translate_arrow: Node3D = $"../../../User/Translate Arrow"
+
+@onready var grid_settings : Node = $"../../Grid Settings"
+
 
 
 #Dragging or not
@@ -15,22 +19,38 @@ var isDragging : bool = false
 @onready var block_instance : RigidBody3D
 @onready var scene_blocks : Node = $"../../../SceneBlocks"
 
-var gridSize = Vector3(0.5,0.5,0.5)
+var gridSize
+
+
+func _ready() -> void:
+	gridSize = grid_settings.gridSize
+	
 
 func delete_current_block(instance):
+	translate_arrow.visible = false
 	delete_block_sound.play()
 	if isDragging:
 		isDragging = !isDragging
 		instance.queue_free()
+		
 
 
 func _input(event: InputEvent) -> void:
-	
+	#print(grid_settings.gridSize)
 	if event.is_action_pressed("deleteBlock") and ray_cast() != null:
 		block_instance = scene_blocks.find_child(_get_object_in_mouse(), true, false)
 		delete_current_block(block_instance)
 	
+	
+	if event.is_action_pressed("rotateq") and isDragging:
+		pass
+	if event.is_action_pressed("rotatee") and isDragging:
+		pass
+	
+	
 	if event.is_action_pressed("leftClick") and ray_cast() != null:
+		
+		
 		block_instance = scene_blocks.find_child(_get_object_in_mouse(), true, false)
 		isDragging = !isDragging
 		
@@ -41,7 +61,6 @@ func _input(event: InputEvent) -> void:
 			print(scene_blocks.find_child(_get_object_in_mouse(), true, false))
 			isDragging = !isDragging
 			
-		
 		
 		_translate_block()
 		
@@ -55,12 +74,17 @@ func _input(event: InputEvent) -> void:
 			block_instance.global_position -= move_direction * scrollSensitivity
 
 
+
+func _rotate_block(direction):
+	pass
+
+
 func _process(delta: float) -> void:
 	if isDragging:
 		_translate_block()
 
 func _translate_block():
-
+		translate_arrow.visible = true
 		var mousepos = get_viewport().get_mouse_position() #Get mouse position 
 		var origin = CameraReference.project_ray_origin(mousepos) #project ray to surface of viewport
 		var end = CameraReference.project_ray_normal(mousepos) #fire ray and pick up position in 3d space of object
@@ -72,6 +96,8 @@ func _translate_block():
 		final_position.y = round(final_position.y / gridSize.y) * gridSize.y
 		final_position.z = round(final_position.z / gridSize.z) * gridSize.z
 		block_instance.global_position = final_position
+		
+		translate_arrow.global_position = final_position
 
 
 

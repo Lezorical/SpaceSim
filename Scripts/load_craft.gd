@@ -21,5 +21,6 @@ func _on_load_pressed() -> void:
 		var instance = loaded_scene.instantiate()
 		
 		instance.global_position = position
+		instance.freeze = 1
 		scene_blocks.add_child(instance)
 		

@@ -17,17 +17,27 @@ extends Node
 @onready var ChairBlock : PackedScene = preload("uid://cuw5gyu2lvy4u") #Engine Block
 @onready var PlayerSpawnSpot : PackedScene = preload("uid://d3u0ahmfu0xvp") #Engine Block
 
+######GUI#######
+@onready var translate_arrow: Node3D = $"../../../User/Translate Arrow"
+
+######GUI#######
+
 ##BLOCKS#################################################################################################
 
-
+func _ready() -> void:
+	translate_arrow.visible = false
 
 func spawnAndPlace(instance):
+	translate_arrow.visible = true
+	translate_arrow.global_position = Vector3(0,0,0)
 	spawnPath.add_child(instance)
 	instance.global_position = Vector3(0,0,0)
 	instance.freeze = true
 
 
 func spawnAndPlaceAfterPlace(location, block_instance):
+	translate_arrow.visible = true
+	translate_arrow.global_position = location
 	var loaded_scene = load(block_instance.get_scene_file_path())
 	var instance = loaded_scene.instantiate()
 	print(instance.name, " ", instance.get_instance_id(), "<")

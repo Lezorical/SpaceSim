@@ -1,28 +1,39 @@
 extends Node
 
+@onready var player : PackedScene = load("res://Scenes/player.tscn")
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("rotateq"):
+		SpaceCraftParent.apply_central_impulse(Vector3(-1,0,0))
+	if event.is_action_pressed("rotatee"):
+		SpaceCraftParent.apply_central_impulse(Vector3(1,0,0))
+
 func _on_animation_player_call_spawner() -> void:
 	spawn_vehicle()
 
-
+var SpaceCraftParent : RigidBody3D = RigidBody3D.new()
 func spawn_vehicle():
-	var craft_name : String = "spaceship"
+	var craft_name : String = "space"
 	
 	var block_placement = ConfigFile.new()
 	block_placement.load("res://saves/" + craft_name + ".cfg")
-	
-	#var SpaceCraftParent : Area3D = Area3D.new()
-	var SpaceCraftParent : Node3D = Node3D.new()
-	
+
+
+
+
 	SpaceCraftParent.name = craft_name
+	SpaceCraftParent.gravity_scale = 0
+	SpaceCraftParent.linear_velocity = Vector3(0,0.01,0)
+	SpaceCraftParent.mass = 10
 	
-#	SpaceCraftParent.gravity_scale = 0
-	#SpaceCraftParent.linear_velocity = Vector3(1,0,0)
-	#SpaceCraftParent.mass = 0.01
+	##PLAYER INSTANCE##
+	var playerInstance = player.instantiate()
+	SpaceCraftParent.add_child(playerInstance)
+	playerInstance.global_position = Vector3(0,5,0)
 	
-	#var SpaceCraftParentMesh : MeshInstance3D = MeshInstance3D.new()
-	#SpaceCraftParentMesh.create_convex_collision()
 	
-	SpaceCraftParent.position = Vector3(-20,-2.8,0) #<-- Location above platform -20,8,-50 <--Middle location of Scaffold
+	SpaceCraftParent.position = Vector3(-20,8,-50) #<-- Location above platform -20,8,-50 <--Middle location of Scaffold
 	get_node("/root/Main").add_child(SpaceCraftParent)
 	#get_node("/root/Main/spaceship").add_child(SpaceCraftParentMesh)
 	

@@ -5,8 +5,8 @@ extends CharacterBody3D
 @export var max_speed : float = 4.0
 @export var braking : float = 20.0
 @export var jump_force : float = 5.0
-@export var gravity_modifyer : float = 1.5
-@export var max_run_speed : float = 6.0
+@export var gravity_modifyer : float = 1.5 #DEFAULT 1.5
+@export var max_run_speed : float = 7.0
 
 var is_running : bool = false
 

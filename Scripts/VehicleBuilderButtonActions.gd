@@ -9,7 +9,7 @@ func _PlayMouseEnteredSound():
 	MouseEnteredSound.play()
 func _PlayButtonPressedSound():
 	ButtonPressedSound.play()
-	
+
 
 func _ready() -> void:
 	Are_You_Sure_prompt.visible = false
