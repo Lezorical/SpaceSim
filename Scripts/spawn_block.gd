@@ -6,6 +6,12 @@ extends Node
 
 ##BLOCKS#################################################################################################
 
+#Computers
+@onready var ComputerBlock = preload("uid://b71odc01rlqmp")
+
+#Connectors
+@onready var ConnectorBlock : PackedScene = preload("uid://c1u06ncmchfl3") #Connector Block
+
 #Engines
 @onready var EngineBlock : PackedScene = preload("uid://dnh7ojgwcax0b") #Engine Block
 
@@ -19,7 +25,6 @@ extends Node
 
 ######GUI#######
 @onready var translate_arrow: Node3D = $"../../../User/Translate Arrow"
-
 ######GUI#######
 
 ##BLOCKS#################################################################################################
@@ -46,6 +51,13 @@ func spawnAndPlaceAfterPlace(location, block_instance):
 	spawnPath.add_child(instance)
 	
 	instance.freeze = true
+
+
+
+func _on_computer_pressed() -> void:
+	var instance = ComputerBlock.instantiate()
+	instance.name = str("computerBlock", " ", instance.get_instance_id())
+	spawnAndPlace(instance)
 
 
 func _on_spawn_button_pressed() -> void:
@@ -75,4 +87,10 @@ func _on_chair_block_2_pressed() -> void:
 func _on_player_spawn_spot_pressed() -> void:
 	var instance = PlayerSpawnSpot.instantiate()
 	instance.name = str("PlayerSpawnBlock", " ", instance.get_instance_id())
+	spawnAndPlace(instance)
+
+
+func _on_connector_pressed() -> void:
+	var instance = ConnectorBlock.instantiate()
+	instance.name = str("ConnectorBlock", " ", instance.get_instance_id())
 	spawnAndPlace(instance)

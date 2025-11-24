@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://0i0l5kjf1ots"]
+[gd_scene load_steps=38 format=3 uid="uid://0i0l5kjf1ots"]
 
 [ext_resource type="Script" uid="uid://b1ujc7cgsnqpt" path="res://Scripts/clear_slate.gd" id="1_736lr"]
 [ext_resource type="Script" uid="uid://hmh8qnigh3f2" path="res://Scripts/VehicleBuilderButtonActions.gd" id="1_gy6cq"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://4m33nptw8iel" path="res://Scripts/move_block.gd" id="7_x467w"]
 [ext_resource type="Texture2D" uid="uid://ch34rt1xfdvrv" path="res://blockResources/Images/computer-keyboard.png" id="8_gia21"]
 [ext_resource type="Texture2D" uid="uid://cbcv8k83qtbyc" path="res://blockResources/Images/shipsymbol.png" id="8_r5l6o"]
+[ext_resource type="Script" uid="uid://by48aomsscu82" path="res://Scripts/building_modes.gd" id="9_r5vtp"]
 [ext_resource type="Script" uid="uid://d5klwjt1ya1k" path="res://Scripts/rotate_block.gd" id="11_cjtao"]
 [ext_resource type="AudioStream" uid="uid://d4l5pdf4bpnhk" path="res://Sounds/quotcancelledquot-175693.mp3" id="13_x467w"]
 [ext_resource type="PackedScene" uid="uid://deinjqhqvjf2e" path="res://Scenes/translate_arrow.tscn" id="22_tuj3i"]
@@ -136,6 +137,9 @@ script = ExtResource("5_736lr")
 
 [node name="Spawn Vehicle" type="Node" parent="Game Manager"]
 script = ExtResource("4_323cd")
+
+[node name="Building Mode" type="Node" parent="Game Manager"]
+script = ExtResource("9_r5vtp")
 
 [node name="Blocks" type="Node" parent="Game Manager"]
 
@@ -332,6 +336,22 @@ offset_bottom = 61.0
 text = "Engine1
 "
 
+[node name="Computer" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 87.0
+offset_right = 178.0
+offset_bottom = 118.0
+text = "Computer"
+
+[node name="Connector" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 87.0
+offset_right = 301.0
+offset_bottom = 118.0
+text = "Connector"
+
 [node name="ChairBlock" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel"]
 layout_mode = 0
 offset_left = 20.0
@@ -358,6 +378,22 @@ offset_right = 1838.0
 offset_bottom = 929.0
 theme_override_font_sizes/font_size = 25
 text = "Load"
+
+[node name="BuildModeButton" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load"]
+offset_left = 1550.0
+offset_top = 761.0
+offset_right = 1695.0
+offset_bottom = 811.0
+theme_override_font_sizes/font_size = 25
+text = "Build Mode"
+
+[node name="EditModeButton" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load"]
+offset_left = 1709.0
+offset_top = 761.0
+offset_right = 1854.0
+offset_bottom = 811.0
+theme_override_font_sizes/font_size = 25
+text = "Edit Mode"
 
 [node name="Clear" type="Button" parent="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load"]
 offset_left = 1765.0
@@ -501,9 +537,13 @@ autoplay = "new_animation"
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/HalfBlock" to="Game Manager/Blocks/Spawn Block" method="_on_spawn_button_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/OriginCube" to="Game Manager/Blocks/Spawn Block" method="_on_origin_cube_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/EngineBlock" to="Game Manager/Blocks/Spawn Block" method="_on_engine_block_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Computer" to="Game Manager/Blocks/Spawn Block" method="_on_computer_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Connector" to="Game Manager/Blocks/Spawn Block" method="_on_connector_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/ChairBlock" to="Game Manager/Blocks/Spawn Block" method="_on_chair_block_2_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Save" to="Game Manager/Save Craft" method="_on_save_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Load" to="Game Manager/Load Craft" method="_on_load_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/BuildModeButton" to="Game Manager/Building Mode" method="_on_build_mode_button_pressed"]
+[connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/EditModeButton" to="Game Manager/Building Mode" method="_on_edit_mode_button_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Save_Load/Clear" to="Game Manager/Button Actions" method="_on_clear_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/half" to="Game Manager/Grid Settings" method="_on_half_pressed"]
 [connection signal="pressed" from="GUI/Building Screen/Main/ItemMenu/ItemSelectionPanel/Grid Size/Full" to="Game Manager/Grid Settings" method="_on_full_pressed"]

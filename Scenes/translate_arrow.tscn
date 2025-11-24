@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://deinjqhqvjf2e"]
+[gd_scene load_steps=5 format=3 uid="uid://deinjqhqvjf2e"]
 
 [ext_resource type="Texture2D" uid="uid://b3m2hgodd5tnb" path="res://File Drop/4way arrowx .png" id="1_rtda8"]
 [ext_resource type="Texture2D" uid="uid://ben1dw4r6hu7n" path="res://File Drop/4way arrowya .png" id="2_oo1u8"]
 [ext_resource type="Texture2D" uid="uid://cefqpto2icqkk" path="res://File Drop/4way arrowyxzy .png" id="3_pq88g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rtda8"]
+size = Vector3(0.367569, 0.362457, 0.383118)
 
 [node name="Translate Arrow" type="Node3D"]
 
@@ -17,3 +20,7 @@ texture = ExtResource("2_oo1u8")
 [node name="Sprite3D2" type="Sprite3D" parent="."]
 transform = Transform3D(0.45, 0, 0, 0, -1.96701e-08, -0.45, 0, 0.45, -1.96701e-08, -0.00262499, 0, 0.0252758)
 texture = ExtResource("3_pq88g")
+
+[node name="MoveZ" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00229645, -0.0224152, 0.86025)
+shape = SubResource("BoxShape3D_rtda8")

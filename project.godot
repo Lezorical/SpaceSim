@@ -32,6 +32,7 @@ block=""
 spawnBlock=""
 builderMachine=""
 chair=""
+EditBlock=""
 
 [input]
 
@@ -111,6 +112,9 @@ rotatee={
 3d/physics_engine="Jolt Physics"
 3d/default_linear_damp=0.0
 3d/default_angular_damp=0.0
+3d/sleep_threshold_linear=0.0
+3d/sleep_threshold_angular=0.0
+3d/time_before_sleep=0.0
 
 [rendering]
 

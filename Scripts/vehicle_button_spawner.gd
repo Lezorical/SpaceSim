@@ -5,9 +5,12 @@ extends Node
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("rotateq"):
-		SpaceCraftParent.apply_central_impulse(Vector3(-1,0,0))
+		SpaceCraftParent.apply_impulse(Vector3(0,0,0), Vector3(10,1,0))
+		SpaceCraftParent.apply_torque_impulse(Vector3(1,0,0))
 	if event.is_action_pressed("rotatee"):
-		SpaceCraftParent.apply_central_impulse(Vector3(1,0,0))
+		#SpaceCraftParent.apply_central_impulse(Vector3(1,0,0))
+		pass
+	
 
 func _on_animation_player_call_spawner() -> void:
 	spawn_vehicle()

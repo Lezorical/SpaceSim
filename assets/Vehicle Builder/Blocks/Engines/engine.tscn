@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnh7ojgwcax0b"]
+[gd_scene load_steps=5 format=3 uid="uid://dnh7ojgwcax0b"]
 
+[ext_resource type="Script" uid="uid://rbppet7k0g5i" path="res://assets/Vehicle Builder/Blocks/Engines/testengine.gd" id="1_875v1"]
 [ext_resource type="ArrayMesh" uid="uid://ci6atkwxnsie1" path="res://Objects/engine1.obj" id="1_w0qs0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w0qs0"]
@@ -7,11 +8,12 @@ friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0qs0"]
 
-[node name="Engine" type="RigidBody3D"]
+[node name="Engine" type="RigidBody3D" groups=["EditBlock", "block"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 physics_material_override = SubResource("PhysicsMaterial_w0qs0")
 gravity_scale = 0.0
 can_sleep = false
+script = ExtResource("1_875v1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.25, 0, 0)
