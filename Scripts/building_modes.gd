@@ -20,7 +20,7 @@ func _on_build_mode_button_pressed() -> void:
 
 func _on_edit_mode_button_pressed() -> void:
 	buildMode = false
-	
+
 	for child in scene_blocks.get_children():
 		if not child.is_in_group("EditBlock"):
 			child.visible = false
